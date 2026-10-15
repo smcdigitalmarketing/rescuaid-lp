@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+/*
+ * Every concept page sets data-theme on its wrapper. The utilities below read
+ * the scoped custom properties, so the same section components restyle per
+ * concept without touching their markup.
+ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-ink: var(--brand-ink);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-highlight: var(--highlight);
+  --color-highlight-ink: var(--highlight-ink);
+  --color-success: var(--success);
+  --color-star: var(--star);
+  --color-footer: var(--footer-bg);
+  --color-footer-ink: var(--footer-ink);
+
+  --font-sans: var(--f-body);
+  --font-display: var(--f-display);
+  --font-button: var(--f-button);
+
+  --radius-card: var(--r-card);
+  --radius-btn: var(--r-btn);
+}
+
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f5f5f6;
+  --ink: #2e2a39;
+  --muted: #6b6775;
+  --line: #e6e4ea;
+  --brand: #c62828;
+  --brand-strong: #8b1c1c;
+  --brand-ink: #ffffff;
+  --btn-bg: linear-gradient(180deg, #c62828 0%, #8b1c1c 100%);
+  --accent: #2e2a39;
+  --accent-ink: #ffffff;
+  --highlight: #fff1c2;
+  --highlight-ink: #2e2a39;
+  --success: #1f7a4d;
+  --star: #f5a524;
+  --footer-bg: #000000;
+  --footer-ink: #fdfbf7;
+  --f-body: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --f-display: "Oswald", "Arial Narrow", sans-serif;
+  --f-button: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --display-weight: 700;
+  --display-case: none;
+  --display-tracking: 0;
+  --r-card: 12px;
+  --r-btn: 12px;
+}
+
+/* Baseline: the live rescuaid.com look (Sense theme: Oswald / Roboto / Poppins). */
+[data-theme="store"] {
+  --display-case: uppercase;
+  --display-tracking: 0.01em;
+}
+
+/* Clinical, trust-led: white and navy, serif headlines, square corners. */
+[data-theme="clinical"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f3f6fa;
+  --ink: #0f1b2d;
+  --muted: #4f5d72;
+  --line: #dfe5ee;
+  --brand: #c8102e;
+  --brand-strong: #a50d26;
+  --btn-bg: #c8102e;
+  --accent: #13306b;
+  --accent-ink: #ffffff;
+  --highlight: #e8f0fb;
+  --highlight-ink: #13306b;
+  --footer-bg: #0b1f45;
+  --footer-ink: #ffffff;
+  --f-display: "Source Serif 4", Georgia, serif;
+  --f-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --f-button: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --display-weight: 600;
+  --display-tracking: -0.01em;
+  --r-card: 8px;
+  --r-btn: 6px;
+}
+
+/* Warm family story: cream, soft serif, rounded. */
+[data-theme="family"] {
+  --bg: #fbf7f1;
+  --surface: #ffffff;
+  --surface-2: #f4ebdf;
+  --ink: #2a1d17;
+  --muted: #6d5a4e;
+  --line: #eadfd1;
+  --brand: #c62828;
+  --brand-strong: #a41f1f;
+  --btn-bg: #c62828;
+  --accent: #7a3b2e;
+  --accent-ink: #ffffff;
+  --highlight: #fde9c8;
+  --highlight-ink: #5a2a1f;
+  --success: #2e7d4f;
+  --footer-bg: #2a1d17;
+  --footer-ink: #fbf7f1;
+  --f-display: "Fraunces", Georgia, serif;
+  --f-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --f-button: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --display-weight: 600;
+  --display-tracking: -0.015em;
+  --r-card: 20px;
+  --r-btn: 999px;
+}
+
+/* Offer-first: high contrast red, black and yellow, condensed headlines. */
+[data-theme="offer"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f6f6f6;
+  --ink: #111111;
+  --muted: #545454;
+  --line: #e4e4e4;
+  --brand: #e11d2e;
+  --brand-strong: #bf1524;
+  --btn-bg: #e11d2e;
+  --accent: #111111;
+  --accent-ink: #ffffff;
+  --highlight: #ffe14d;
+  --highlight-ink: #111111;
+  --success: #138a4b;
+  --footer-bg: #111111;
+  --footer-ink: #ffffff;
+  --f-display: "Oswald", "Arial Narrow", sans-serif;
+  --f-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --f-button: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --display-weight: 700;
+  --display-case: uppercase;
+  --r-card: 14px;
+  --r-btn: 12px;
+}
+
+/* Premium minimal: warm off-white, editorial serif, restrained red. */
+[data-theme="premium"] {
+  --bg: #f7f5f1;
+  --surface: #ffffff;
+  --surface-2: #efebe4;
+  --ink: #1b1a17;
+  --muted: #6f6a61;
+  --line: #e3ded5;
+  --brand: #9e1b1f;
+  --brand-strong: #7d1418;
+  --btn-bg: #1b1a17;
+  --brand-ink: #ffffff;
+  --accent: #1b1a17;
+  --accent-ink: #f7f5f1;
+  --highlight: #efe6d6;
+  --highlight-ink: #1b1a17;
+  --success: #3f6b4f;
+  --star: #1b1a17;
+  --footer-bg: #1b1a17;
+  --footer-ink: #f7f5f1;
+  --f-display: "Instrument Serif", Georgia, serif;
+  --f-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --f-button: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.01em;
+  --r-card: 4px;
+  --r-btn: 2px;
+}
+
+/* Headline type follows the concept: weight, case and tracking are tokens too. */
+@utility display {
+  font-family: var(--f-display);
+  font-weight: var(--display-weight);
+  text-transform: var(--display-case);
+  letter-spacing: var(--display-tracking);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+@utility btn-primary {
+  background: var(--btn-bg);
+  color: var(--brand-ink);
+  font-family: var(--f-button);
+  border-radius: var(--r-btn);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #2e2a39;
+  -webkit-font-smoothing: antialiased;
+}
+
+body:has(> [data-theme="family"]) {
+  background: #fbf7f1;
+}
+
+body:has(> [data-theme="premium"]) {
+  background: #f7f5f1;
+}
+
+/* Lifestyle strip: two copies of the list scroll left in a loop. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 50s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
