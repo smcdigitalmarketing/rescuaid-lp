@@ -379,7 +379,8 @@ async function audit(viewport: { width: number; height: number }) {
     const privateRepo = url.startsWith(
       "https://github.com/smcdigitalmarketing/rescuaid-lp/",
     );
-    ok(status === 200 || privateRepo, `${tag} external ${url} → ${status}`);
+    // 429 = the site rate-limits automated requests (YouTube does); the link itself is fine.
+    ok(status === 200 || status === 429 || privateRepo, `${tag} external ${url} → ${status}`);
   }
   await ctx.close();
 }
