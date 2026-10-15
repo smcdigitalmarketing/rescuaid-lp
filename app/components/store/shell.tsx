@@ -1,11 +1,12 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { Link } from "react-router";
-import { ArrowLeft, ShoppingBag } from "lucide-react";
+import { ArrowLeft, Menu, ShoppingBag, X } from "lucide-react";
 import type { ThemeName } from "~/content/types";
 import { SUPPORT_EMAIL, GUARANTEE_DAYS } from "~/content/base";
 import { CartProvider, useCart } from "~/lib/mock-cart";
 import { useCountdown } from "~/lib/use-countdown";
 import { Logo } from "~/components/ui";
+import { STORE_URL } from "~/lib/seo";
 import { CartDrawer, CheckoutPreview } from "./cart";
 
 /**
@@ -81,33 +82,46 @@ function Announcement({ text, countdown }: { text: string; countdown: boolean })
   );
 }
 
+/** In-page links, the same on desktop and in the phone menu. */
+const NAV = [
+  { href: "#top", label: "Home" },
+  { href: "#buy", label: "RescUAid" },
+  { href: "#how", label: "How it works" },
+  { href: "#reviews", label: "Reviews" },
+  { href: "#faq", label: "Contact" },
+];
+
 function Header() {
   const { count, setOpen } = useCart();
+  const [menu, setMenu] = useState(false);
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-surface/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-        <a href="#top" className="shrink-0" aria-label="RescUAid home">
-          <Logo className="h-8 md:h-9" />
-        </a>
-        <nav
-          aria-label="Main"
-          className="hidden gap-7 text-sm text-muted md:flex"
-        >
-          <a href="#top" className="hover:text-ink">
-            Home
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => setMenu((v) => !v)}
+            className="-ml-2 rounded-full p-2 hover:bg-surface-2 md:hidden"
+            aria-label={menu ? "Close menu" : "Open menu"}
+            aria-expanded={menu}
+            aria-controls="mobile-menu"
+          >
+            {menu ? (
+              <X aria-hidden="true" className="size-6" />
+            ) : (
+              <Menu aria-hidden="true" className="size-6" />
+            )}
+          </button>
+          <a href="#top" className="shrink-0" aria-label="RescUAid home">
+            <Logo className="h-8 md:h-9" />
           </a>
-          <a href="#buy" className="hover:text-ink">
-            RescUAid
-          </a>
-          <a href="#how" className="hover:text-ink">
-            How it works
-          </a>
-          <a href="#reviews" className="hover:text-ink">
-            Reviews
-          </a>
-          <a href="#faq" className="hover:text-ink">
-            Contact
-          </a>
+        </div>
+        <nav aria-label="Main" className="hidden gap-7 text-sm text-muted md:flex">
+          {NAV.map((n) => (
+            <a key={n.href} href={n.href} className="hover:text-ink">
+              {n.label}
+            </a>
+          ))}
         </nav>
         <button
           type="button"
@@ -123,20 +137,55 @@ function Header() {
           )}
         </button>
       </div>
+      {menu && (
+        <nav
+          id="mobile-menu"
+          aria-label="Main"
+          className="border-t border-line bg-surface px-4 pb-4 md:hidden"
+        >
+          {NAV.map((n) => (
+            <a
+              key={n.href}
+              href={n.href}
+              onClick={() => setMenu(false)}
+              className="block border-b border-line py-3 text-base font-medium last:border-0"
+            >
+              {n.label}
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }
 
+const POLICIES = [
+  { slug: "privacy-policy", label: "Privacy policy" },
+  { slug: "shipping-policy", label: "Shipping policy" },
+  { slug: "terms-of-service", label: "Terms of service" },
+  { slug: "refund-policy", label: "Refund policy" },
+];
+
 function Footer() {
   return (
-    <footer className="bg-footer px-4 pb-28 pt-14 text-sm text-footer-ink/75 md:pb-14">
+    <footer className="bg-footer px-4 pb-28 pt-14 text-sm text-footer-ink/75">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-4">
         <div>
           <p className="mb-3 font-bold uppercase tracking-wider text-footer-ink">
             Contact us
           </p>
-          <p>Email: {SUPPORT_EMAIL}</p>
-          <p>Phone: (307) 316-6168</p>
+          <p>
+            Email:{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="underline hover:text-footer-ink">
+              {SUPPORT_EMAIL}
+            </a>
+          </p>
+          <p>
+            Phone:{" "}
+            <a href="tel:+13073166168" className="underline hover:text-footer-ink">
+              (307) 316-6168
+            </a>
+          </p>
           <p className="mt-2">
             2232 Dell Range Blvd
             <br />
@@ -164,16 +213,28 @@ function Footer() {
           <p className="mb-3 font-bold uppercase tracking-wider text-footer-ink">
             Policies
           </p>
+          {/* The live store's own policy pages. */}
           <ul className="space-y-1">
-            <li>Privacy policy</li>
-            <li>Shipping policy</li>
-            <li>Terms of service</li>
-            <li>Refund policy</li>
+            {POLICIES.map((pol) => (
+              <li key={pol.slug}>
+                <a
+                  href={`${STORE_URL}/policies/${pol.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-footer-ink"
+                >
+                  {pol.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
       <p className="mx-auto mt-10 max-w-6xl border-t border-footer-ink/15 pt-6 text-xs">
-        © 2026, RescUAid · Concept preview, not the live store
+        © 2026, RescUAid · Concept preview, not the live store ·{" "}
+        <Link to="/" className="underline hover:text-footer-ink">
+          All concepts
+        </Link>
       </p>
     </footer>
   );

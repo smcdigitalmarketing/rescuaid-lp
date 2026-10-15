@@ -188,7 +188,7 @@ export function BuyBox({
 }) {
   const save = state.compareAt - state.total;
   return (
-    <div id="buy-options" className="space-y-6">
+    <div id="buy-options" className="scroll-mt-24 space-y-6">
       <div role="radiogroup" aria-label={buy.steps[0]}>
         <StepLabel n={1}>{buy.steps[0]}</StepLabel>
         <div className="space-y-3">

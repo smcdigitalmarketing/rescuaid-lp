@@ -2,6 +2,12 @@
 
 Landing page proof of concept for **RescUAid 2.0**. It mocks rescuaid.com with the real products, prices, photos and reviews, and holds five landing pages. All five follow the same seven-section product page template (see [docs/pdp-template-sop.md](docs/pdp-template-sop.md)), and each one tests a different idea.
 
+## SOP
+
+**[Product Landing Page SOP](docs/pdp-template-sop.md)**: the seven-section structure, gallery slide order, copy rules, how to add a page, how to measure which page wins, and the launch checklist.
+
+## The pages
+
 Cart and checkout are mocked. Nothing is charged and nothing is sent to Shopify. Every page is `noindex`.
 
 | URL                                                          | Concept             | Tests                                                   |

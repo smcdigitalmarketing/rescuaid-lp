@@ -16,6 +16,10 @@ export const meta: Route.MetaFunction = () => [
   },
 ];
 
+/** The SOP, a markdown file in the GitHub repo. */
+const SOP_URL =
+  "https://github.com/smcdigitalmarketing/rescuaid-lp/blob/main/docs/pdp-template-sop.md";
+
 const framework = [
   [
     "Above the fold",
@@ -131,9 +135,17 @@ export default function Home() {
           <h2 className="text-2xl font-bold">How every page is built</h2>
           <p className="mt-2 max-w-3xl text-black/60">
             The same seven sections, in the same order, on every concept. The
-            full SOP, with the copy rules, gallery slide order and launch
-            checklist, is in the repo at{" "}
-            <code className="text-sm">docs/pdp-template-sop.md</code>.
+            full SOP covers the copy rules, gallery slide order and launch
+            checklist:{" "}
+            <a
+              href={SOP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-[#c62828] underline"
+            >
+              read the SOP
+            </a>
+            .
           </p>
           <ol className="mt-8 grid gap-x-10 gap-y-6 md:grid-cols-2">
             {framework.map(([title, body], i) => (

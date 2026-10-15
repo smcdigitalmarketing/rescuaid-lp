@@ -57,7 +57,7 @@ function PdpBody({ page }: { page: ConceptPage }) {
   const buy = useBuyState(c.buy, page.slug, PRODUCT_NAME);
   const atcRef = useRef<HTMLButtonElement>(null);
   const toBuy = () =>
-    document.getElementById("buy")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("buy-options")?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <>
