@@ -4,7 +4,7 @@ Landing page proof of concept for **RescUAid 2.0**. It mocks rescuaid.com with t
 
 ## SOP
 
-**[Product Landing Page SOP](docs/pdp-template-sop.md)**: the seven-section structure, gallery slide order, copy rules, how to add a page, how to measure which page wins, and the launch checklist.
+**[Product Landing Page SOP](docs/pdp-template-sop.md)** (also on the site at [/sop](https://rescuaid-lp.vercel.app/sop), for anyone without repo access): the seven-section structure, gallery slide order, copy rules, how to add a page, how to measure which page wins, and the launch checklist.
 
 ## The pages
 
@@ -14,6 +14,7 @@ Cart and checkout are mocked. Nothing is charged and nothing is sent to Shopify.
 | ------------------------------------------------------------ | ------------------- | ------------------------------------------------------- |
 | `/`                                                          | Review hub          | Links to every page, with its hypothesis                |
 | `/gallery`                                                   | Gallery images      | All 35 gallery images, downloadable as JPGs             |
+| `/sop`                                                       | SOP                 | The SOP, rendered from `docs/pdp-template-sop.md`       |
 | `/products/rescuaid-anti-choking-device-for-adults-children` | Baseline            | The framework in the live store's look: structure alone |
 | `/pages/clinical`                                            | Clinical, trust-led | Authority first: how it works and an EMT's word         |
 | `/pages/family`                                              | Warm family story   | People-led copy, bundles anchored to rooms              |

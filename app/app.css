@@ -254,3 +254,85 @@ body:has(> [data-theme="premium"]) {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* The SOP page (/sop): rendered markdown. */
+.sop {
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.sop h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem;
+}
+.sop h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 2.5rem 0 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgb(0 0 0 / 0.08);
+}
+.sop p,
+.sop ul,
+.sop ol,
+.sop table {
+  margin: 0 0 1rem;
+}
+.sop ul,
+.sop ol {
+  padding-left: 1.4rem;
+}
+.sop ul {
+  list-style: disc;
+}
+.sop ol {
+  list-style: decimal;
+}
+.sop li {
+  margin: 0.25rem 0;
+}
+.sop li:has(> input[type="checkbox"]) {
+  list-style: none;
+  margin-left: -1.4rem;
+}
+.sop input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+.sop a {
+  color: #c62828;
+  text-decoration: underline;
+}
+.sop code {
+  font-size: 0.85em;
+  background: rgb(0 0 0 / 0.05);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+.sop table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.sop th,
+.sop td {
+  border: 1px solid rgb(0 0 0 / 0.1);
+  padding: 0.5rem 0.65rem;
+  text-align: left;
+  vertical-align: top;
+}
+.sop th {
+  background: rgb(0 0 0 / 0.04);
+  font-weight: 600;
+}
+.sop td:first-child:not(:only-child),
+.sop th:first-child {
+  white-space: nowrap;
+}
+.sop td:nth-child(2),
+.sop th:nth-child(2) {
+  min-width: 9rem;
+}

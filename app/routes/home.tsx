@@ -16,9 +16,8 @@ export const meta: Route.MetaFunction = () => [
   },
 ];
 
-/** The SOP, a markdown file in the GitHub repo. */
-const SOP_URL =
-  "https://github.com/smcdigitalmarketing/rescuaid-lp/blob/main/docs/pdp-template-sop.md";
+/** The SOP: docs/pdp-template-sop.md in the repo, rendered at /sop. */
+const SOP_URL = "/sop";
 
 const framework = [
   [
@@ -157,8 +156,6 @@ export default function Home() {
             checklist:{" "}
             <a
               href={SOP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="font-semibold text-[#c62828] underline"
             >
               read the SOP

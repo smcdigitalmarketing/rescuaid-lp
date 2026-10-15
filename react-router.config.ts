@@ -14,6 +14,7 @@ export default {
       "/pages/offer",
       "/pages/premium",
       "/gallery",
+      "/sop",
     ];
   },
 } satisfies Config;

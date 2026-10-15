@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import type { PdpContent, Review, Slide } from "~/content/types";
 import { money } from "~/data/catalog";
 import { Icon } from "~/components/icons";
 import { Picture, Stars } from "~/components/ui";
 import { SlideThumb, SlideView } from "~/components/gallery/slides";
+import { Lightbox } from "~/components/gallery/lightbox";
 
 /*
  * Section 1: above the fold. The video's rule: someone who only swipes the
@@ -22,6 +23,8 @@ import { SlideThumb, SlideView } from "~/components/gallery/slides";
 export function MediaGallery({ slides }: { slides: Slide[] }) {
   const track = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
+  /** The slide open in the lightbox, or null. */
+  const [zoom, setZoom] = useState<number | null>(null);
 
   useEffect(() => {
     const el = track.current;
@@ -31,11 +34,17 @@ export function MediaGallery({ slides }: { slides: Slide[] }) {
     return () => el.removeEventListener("scroll", onScroll);
   }, []);
 
-  const go = (i: number) => {
+  const go = (i: number, behavior: ScrollBehavior = "smooth") => {
     const el = track.current;
     if (!el) return;
     const n = (i + slides.length) % slides.length;
-    el.scrollTo({ left: n * el.clientWidth, behavior: "smooth" });
+    el.scrollTo({ left: n * el.clientWidth, behavior });
+  };
+
+  /** Closing the lightbox leaves the gallery on the slide that was open. */
+  const closeZoom = () => {
+    if (zoom !== null) go(zoom, "instant");
+    setZoom(null);
   };
 
   return (
@@ -50,11 +59,17 @@ export function MediaGallery({ slides }: { slides: Slide[] }) {
           {slides.map((s, i) => (
             <div
               key={i}
-              className="aspect-square w-full shrink-0 snap-center overflow-hidden [container-type:inline-size]"
+              className="relative aspect-square w-full shrink-0 snap-center overflow-hidden [container-type:inline-size]"
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${slides.length}`}
             >
               <SlideView slide={s} priority={i === 0} />
+              <button
+                type="button"
+                onClick={() => setZoom(i)}
+                className="absolute inset-0 cursor-zoom-in"
+                aria-label={`Enlarge image ${i + 1}`}
+              />
             </div>
           ))}
         </div>
@@ -74,7 +89,15 @@ export function MediaGallery({ slides }: { slides: Slide[] }) {
         >
           <ChevronRight aria-hidden="true" className="size-5" />
         </button>
-        <span className="absolute bottom-2 right-2 rounded-full bg-black/55 px-2 py-0.5 text-[11px] font-semibold text-white tabular-nums">
+        <button
+          type="button"
+          onClick={() => setZoom(index)}
+          className="absolute right-2 top-2 rounded-full bg-black/55 p-1.5 text-white hover:bg-black/70"
+          aria-label="View larger"
+        >
+          <Maximize2 aria-hidden="true" className="size-4" />
+        </button>
+        <span className="pointer-events-none absolute bottom-2 right-2 rounded-full bg-black/55 px-2 py-0.5 text-[11px] font-semibold text-white tabular-nums">
           {index + 1} / {slides.length}
         </span>
       </div>
@@ -108,6 +131,16 @@ export function MediaGallery({ slides }: { slides: Slide[] }) {
           </button>
         ))}
       </div>
+      {zoom !== null && (
+        <Lightbox
+          slides={slides}
+          index={zoom}
+          // The concept's theme, read from the page wrapper, so the portal keeps its look.
+          theme={track.current?.closest<HTMLElement>("[data-theme]")?.dataset.theme ?? "store"}
+          onIndex={setZoom}
+          onClose={closeZoom}
+        />
+      )}
     </div>
   );
 }

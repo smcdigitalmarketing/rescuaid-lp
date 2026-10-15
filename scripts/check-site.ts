@@ -24,7 +24,7 @@ const CONCEPTS = [
   "/pages/offer",
   "/pages/premium",
 ];
-const PAGES = ["/", "/gallery", ...CONCEPTS];
+const PAGES = ["/", "/gallery", "/sop", ...CONCEPTS];
 const GALLERY_SLIDES = 7;
 
 const problems: string[] = [];
@@ -149,6 +149,22 @@ async function checkConcept(
       `${tag} ${p} gallery swipe`,
     );
   }
+
+  // Lightbox: opens on the current slide, moves with the keyboard and its own arrows, closes on Escape.
+  const shown = Number((await counter.innerText()).split(" /")[0]);
+  await page.getByRole("button", { name: "View larger" }).click();
+  const box = page.getByRole("dialog", { name: /^Image \d+ of \d+$/ });
+  ok((await box.getAttribute("aria-label")) === `Image ${shown} of ${GALLERY_SLIDES}`, `${tag} ${p} lightbox opens on image ${shown}`);
+  await page.keyboard.press("ArrowRight");
+  await box.getByRole("button", { name: "Next image" }).click();
+  ok((await box.getAttribute("aria-label")) === `Image ${shown + 2} of ${GALLERY_SLIDES}`, `${tag} ${p} lightbox arrow key and button`);
+  await page.keyboard.press("Escape");
+  await wait(page, 300);
+  ok(!(await box.isVisible()) && (await counter.innerText()).startsWith(`${shown + 2} /`), `${tag} ${p} lightbox closes on Escape, gallery follows`);
+  await page.getByRole("button", { name: "Enlarge image 1" }).click({ force: true });
+  ok(await box.isVisible(), `${tag} ${p} clicking a gallery image opens the lightbox`);
+  await box.getByRole("button", { name: "Close image" }).click();
+  ok(!(await box.isVisible()), `${tag} ${p} lightbox close button`);
 
   // Bundles, price and add-ons.
   await page.getByRole("radio", { name: /Single Kit/ }).click();
@@ -304,6 +320,11 @@ async function audit(viewport: { width: number; height: number }) {
     await page.goto(base + p, { waitUntil: "networkidle" });
     const links = await checkLinks(page, p, tag, external);
     if (p === "/gallery") {
+      await page.getByRole("button", { name: /^Enlarge .* image 1$/ }).first().click();
+      const box = page.getByRole("dialog", { name: /^Image 1 of \d+$/ });
+      ok(await box.isVisible(), `${tag} /gallery image opens the lightbox`);
+      await page.keyboard.press("Escape");
+      ok(!(await box.isVisible()), `${tag} /gallery lightbox closes`);
       const downloads = links.filter((l) => l.href.endsWith(".jpg")).length;
       ok(
         downloads === CONCEPTS.length * GALLERY_SLIDES,

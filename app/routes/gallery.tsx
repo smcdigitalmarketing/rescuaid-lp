@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { ArrowLeft, Download } from "lucide-react";
 import type { Route } from "./+types/gallery";
 import { pages } from "~/content/pages";
 import { fontHref } from "~/lib/seo";
 import { SLIDE_LABELS, SlideView, exportPath } from "~/components/gallery/slides";
+import { Lightbox } from "~/components/gallery/lightbox";
 
 export const meta: Route.MetaFunction = () => [
   { title: "RescUAid product gallery images" },
@@ -22,6 +24,8 @@ export const meta: Route.MetaFunction = () => [
 ];
 
 export default function Gallery() {
+  /** The slide open in the lightbox: which concept, which image. */
+  const [zoom, setZoom] = useState<{ slug: string; index: number } | null>(null);
   return (
     <div className="min-h-dvh bg-[#f6f6f4] font-[Inter,system-ui,sans-serif] text-[#16151a]">
       <main className="mx-auto max-w-7xl px-4 py-10">
@@ -59,8 +63,14 @@ export default function Gallery() {
             >
               {p.content.gallery.map((s, i) => (
                 <li key={i} className="flex flex-col">
-                  <div className="aspect-square overflow-hidden rounded-lg border border-black/10 [container-type:inline-size]">
+                  <div className="relative aspect-square overflow-hidden rounded-lg border border-black/10 [container-type:inline-size]">
                     <SlideView slide={s} />
+                    <button
+                      type="button"
+                      onClick={() => setZoom({ slug: p.slug, index: i })}
+                      className="absolute inset-0 cursor-zoom-in"
+                      aria-label={`Enlarge ${p.name} image ${i + 1}`}
+                    />
                   </div>
                   <div className="mt-2 flex items-center justify-between gap-2 font-[Inter,system-ui,sans-serif] text-xs">
                     <span className="text-black/70">
@@ -79,6 +89,15 @@ export default function Gallery() {
                 </li>
               ))}
             </ol>
+            {zoom?.slug === p.slug && (
+              <Lightbox
+                slides={p.content.gallery}
+                index={zoom.index}
+                theme={p.theme}
+                onIndex={(index) => setZoom({ slug: p.slug, index })}
+                onClose={() => setZoom(null)}
+              />
+            )}
           </section>
         ))}
       </main>
