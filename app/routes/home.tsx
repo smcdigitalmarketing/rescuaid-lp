@@ -131,6 +131,24 @@ export default function Home() {
           })}
         </ul>
 
+        <Link
+          to="/gallery"
+          className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-black/10 bg-white p-6 transition hover:shadow-lg md:p-8"
+        >
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#c62828]">Product gallery</p>
+            <p className="mt-1 text-xl font-bold">7 gallery images per concept, ready for Shopify</p>
+            <p className="mt-1 text-sm text-black/60">
+              Benefit headline, in use, before and after, what's inside, how it works, us vs them, and a real review.
+              Download each as a 1600 × 1600 JPG.
+            </p>
+          </div>
+          <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#c62828]">
+            View gallery images
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </span>
+        </Link>
+
         <section className="mt-16 rounded-xl border border-black/10 bg-white p-6 md:p-10">
           <h2 className="text-2xl font-bold">How every page is built</h2>
           <p className="mt-2 max-w-3xl text-black/60">

@@ -1,8 +1,8 @@
 import { MAIN_HANDLE } from "~/data/catalog";
 import { lifeImg, pageImg } from "~/lib/images";
-import { GUARANTEE_DAYS, expert, loox, media, stories } from "../base";
+import { loox, media } from "../base";
 import type { ConceptPage } from "../types";
-import { shared } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
 
 /**
  * Baseline: the video's structure in the live rescuaid.com look, so the only
@@ -57,53 +57,31 @@ export const baseline: ConceptPage = {
       },
     ],
     gallery: [
-      { role: "product", kind: "photo", image: media.kitClean, fit: "contain" },
       {
-        role: "pain",
-        kind: "overlay",
-        image: pageImg(
-          "time-device",
-          "A woman choking at home while her mother looks on",
-        ),
-        eyebrow: "Choking can happen to anyone",
-        headline: "Help is 8–12 minutes away. You have about 4.",
-        points: [
-          "Brain damage can begin within 4–6 minutes",
-          "Typical EMS response is 8–12 minutes",
-        ],
+        kind: "headline",
+        image: lifeImg("heroStore", "RescUAid device on a clean white background"),
+        eyebrow: "RescUAid 2.0",
+        headline: "Help clear a blocked airway in 3 simple moves",
+        sub: "For adults and kids, ages 12 months and up",
+        proof: "Rated 4.8/5 by 10,000+ families",
       },
       {
-        role: "value",
-        kind: "photo",
-        image: media.infographic,
-        fit: "contain",
-      },
-      { role: "value", kind: "photo", image: media.engineered, fit: "contain" },
-      { role: "value", kind: "photo", image: media.everyRoom, fit: "contain" },
-      { role: "how", kind: "photo", image: media.threeSteps, fit: "contain" },
-      { role: "how", kind: "photo", image: media.demoGif, fit: "cover" },
-      { role: "proof", kind: "proof", review: expert },
-      { role: "proof", kind: "proof", review: loox[0] },
-      { role: "proof", kind: "proof", review: stories[0] },
-      { role: "compare", kind: "photo", image: media.vsOthers, fit: "contain" },
-      {
-        role: "guarantee",
-        kind: "guarantee",
-        days: GUARANTEE_DAYS,
-        headline: "Try it risk-free",
-        body: `If it isn't right for your family, email us within ${GUARANTEE_DAYS} days and we'll refund your order.`,
+        kind: "inUse",
+        image: lifeImg("inUseKitchen", "A woman demonstrating RescUAid on a calm adult at a kitchen table"),
+        eyebrow: "Designed for real emergencies",
+        headline: "Simple enough to use under stress",
+        points: ["No training", "No strength", "Works on yourself"],
       },
       {
-        role: "lifestyle",
-        kind: "photo",
-        image: media.giftIdeas,
-        fit: "contain",
+        kind: "beforeAfter",
+        headline: "Peace of mind at every meal",
+        before: { image: pairs.dinner.before, label: "Before", caption: "Dinner, hoping nothing goes wrong" },
+        after: { image: pairs.dinner.after, label: "After", caption: "RescUAid within arm's reach" },
       },
-      {
-        role: "lifestyle",
-        kind: "photo",
-        image: lifeImg("v2Hero", "Family dinner with RescUAid on the counter"),
-      },
+      insideSlide(),
+      stepsSlide(),
+      compareSlide(),
+      reviewSlide(loox[0], "4.8/5 from 389 verified reviews"),
     ],
     valueProps: {
       eyebrow: "Why RescUAid",

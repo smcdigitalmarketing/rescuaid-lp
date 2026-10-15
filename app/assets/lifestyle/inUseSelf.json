@@ -1,0 +1,16 @@
+{
+  "id": "inUseSelf",
+  "model": "gemini-3-pro-image",
+  "aspect": "1:1",
+  "refs": [
+    "device",
+    "in-use-closeup"
+  ],
+  "prompt": "A woman in her sixties standing calmly in her bright kitchen demonstrates self-use: she holds the RescUAid anti-choking device from the first reference image (a matte red anodized-aluminium handheld cylinder with knurled grip panels, a white square label with a red arrow that always points away from the mask toward the capped handle end, and a clear soft silicone face mask attached to one end) with both hands, the clear mask sealed over her own mouth and nose, her eyes calm and steady. Soft morning light, plants on the windowsill. Keep the bottom third of the frame simple and uncluttered. The second reference image shows how the device is held against the face; do not copy the people, setting or framing in it. Nobody is choking, coughing or distressed: this is a calm demonstration. Use the reference image only to match the device's exact shape, colour, label and mask. Do not copy its background, angle or composition. Show exactly one device unless the prompt asks for more. No leaflets, cards, packaging, pouches or printed paper. No text, captions, logos, badges, seals, certification marks or watermarks anywhere in the image. Photorealistic commercial photography, natural skin tones, anatomically correct hands.",
+  "usage": {
+    "input": 770,
+    "output": 1324
+  },
+  "costUsd": 0.16042,
+  "generatedAt": "2026-10-15T18:04:28.741Z"
+}

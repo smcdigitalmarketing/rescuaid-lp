@@ -1,7 +1,7 @@
 import { lifeImg } from "~/lib/images";
-import { GUARANTEE_DAYS, LOOX, expert, loox, media } from "../base";
+import { GUARANTEE_DAYS, LOOX, loox } from "../base";
 import type { ConceptPage } from "../types";
-import { shared } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
 
 const monica = loox.find((r) => r.name === "Monica L.")!;
 
@@ -53,65 +53,28 @@ export const premium: ConceptPage = {
     },
     gallery: [
       {
-        role: "product",
-        kind: "photo",
-        image: lifeImg(
-          "kitStudio",
-          "RescUAid device with adult and child masks on a soft cream backdrop",
-        ),
+        kind: "headline",
+        image: lifeImg("heroPremium", "RescUAid device resting on cream linen"),
+        eyebrow: "RescUAid 2.0",
+        headline: "Be the calm one",
+        sub: "For the minute you hope never comes",
+        proof: "4.8 / 5 from 389 owners",
       },
       {
-        role: "pain",
-        kind: "overlay",
-        image: lifeImg(
-          "adAlone",
-          "Woman in her seventies alone in her kitchen",
-        ),
-        headline: "For the minute you hope never comes.",
+        kind: "inUse",
+        image: lifeImg("inUseSelf", "A woman demonstrating self-use of RescUAid in her kitchen"),
+        headline: "Designed for the moment you're alone",
       },
       {
-        role: "value",
-        kind: "overlay",
-        image: lifeImg(
-          "v1Valve",
-          "Close-up of the clear mask and one-way valve",
-        ),
-        headline: "Air out. Never in.",
-        points: ["A one-way valve and a sealed mask"],
-        align: "top",
+        kind: "beforeAfter",
+        headline: "Quietly ready",
+        before: { image: pairs.alone.before, label: "Before", caption: "Alone, and unsure" },
+        after: { image: pairs.alone.after, label: "After", caption: "Calm, and prepared" },
       },
-      {
-        role: "value",
-        kind: "overlay",
-        image: lifeImg(
-          "adInside",
-          "RescUAid device, adult mask and child mask laid out",
-        ),
-        headline: "Everything you need. Nothing you don't.",
-        points: ["Device", "Adult mask", "Child mask, 12 months and up"],
-        align: "top",
-      },
-      {
-        role: "how",
-        kind: "overlay",
-        image: lifeImg("stepPull", "Pulling the RescUAid handle back"),
-        headline: "Place. Press. Pull.",
-      },
-      { role: "proof", kind: "proof", review: expert },
-      { role: "proof", kind: "proof", review: monica },
-      { role: "compare", kind: "photo", image: media.vsOthers, fit: "contain" },
-      {
-        role: "guarantee",
-        kind: "guarantee",
-        days: GUARANTEE_DAYS,
-        headline: "Ninety days to be sure.",
-        body: `If it isn't right for your family, email us within ${GUARANTEE_DAYS} days and we'll refund your order.`,
-      },
-      {
-        role: "lifestyle",
-        kind: "photo",
-        image: lifeImg("v2Nightstand", "RescUAid on a bedside table"),
-      },
+      insideSlide("Everything you need. Nothing you don't."),
+      stepsSlide("Place. Press. Pull."),
+      compareSlide("Considered, not clunky"),
+      reviewSlide(monica, "“A good investment for my family”"),
     ],
     valueProps: {
       headline: "Quietly ready, for years",

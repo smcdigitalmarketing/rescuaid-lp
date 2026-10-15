@@ -1,0 +1,15 @@
+{
+  "id": "beforeDinner",
+  "model": "gemini-3-pro-image",
+  "aspect": "4:3",
+  "refs": [
+    "@v2Hero"
+  ],
+  "prompt": "Recreate the scene from the reference image: the same family, the same kitchen, the same golden-hour light and camera angle. Change two things only: remove the red handheld device from the counter entirely (the counter shows just the fruit bowl), and have the mother lean toward the toddler in the high chair, watching closely with an attentive, slightly worried expression while the toddler eats. No text, captions, logos, badges or watermarks anywhere in the image. Photorealistic, natural skin tones, anatomically correct hands. Nobody is choking, coughing or in distress.",
+  "usage": {
+    "input": 373,
+    "output": 1274
+  },
+  "costUsd": 0.153626,
+  "generatedAt": "2026-10-15T18:04:51.144Z"
+}

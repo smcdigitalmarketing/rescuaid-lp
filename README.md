@@ -13,6 +13,7 @@ Cart and checkout are mocked. Nothing is charged and nothing is sent to Shopify.
 | URL                                                          | Concept             | Tests                                                   |
 | ------------------------------------------------------------ | ------------------- | ------------------------------------------------------- |
 | `/`                                                          | Review hub          | Links to every page, with its hypothesis                |
+| `/gallery`                                                   | Gallery images      | All 35 gallery images, downloadable as JPGs             |
 | `/products/rescuaid-anti-choking-device-for-adults-children` | Baseline            | The framework in the live store's look: structure alone |
 | `/pages/clinical`                                            | Clinical, trust-led | Authority first: how it works and an EMT's word         |
 | `/pages/family`                                              | Warm family story   | People-led copy, bundles anchored to rooms              |
@@ -36,6 +37,17 @@ npm run dev
 - `app/components/store/`: the mocked rescuaid.com chrome, made of the announcement bar with its countdown, header, footer, cart drawer and checkout preview.
 - `app/lib/mock-cart.tsx`: the in-browser cart. Each line is tagged with the page slug (`pdp_variant`).
 - `app/app.css`: theme tokens. Each concept is one `[data-theme]` block.
+
+## Product gallery
+
+Every page's gallery has seven images in Russab's order: benefit headline, in use, before and after, what's inside, how it works, us vs them, and a real review. The rules are in section 2 of the SOP.
+
+- `npm run images` generates the photography with Gemini from `app/data/image-slots.ts`. It needs `GEMINI_API_KEY` in `.env` (see `.env.example`). Use `-- --dry-run` to see the cost first, `-- --only <id>` for one image, and `-- --force` to regenerate.
+- `npm run gallery:export -- --base http://localhost:5173` (with `npm run dev` running) saves every slide as a 1600 × 1600 JPG in `public/gallery/`. They are listed for download at `/gallery`.
+
+## Checking the site
+
+`npm run check -- --base <url>` clicks through every page at desktop and phone widths, covering links, gallery, bundles, cart, checkout preview, menus and downloads. It exits non-zero if anything fails.
 
 ## Store data
 

@@ -1,7 +1,7 @@
 import { lifeImg } from "~/lib/images";
-import { GUARANTEE_DAYS, LOOX, loox, media, stories, tiers } from "../base";
+import { LOOX, loox, stories, tiers } from "../base";
 import type { ConceptPage } from "../types";
-import { shared } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
 
 const carol = loox.find((r) => r.name === "Carol M.")!;
 const sarahW = loox.find((r) => r.name === "Sarah W.")!;
@@ -66,59 +66,31 @@ export const family: ConceptPage = {
       tiers: tiers.map((t) => ({ ...t, sub: roomSubs[t.id] ?? t.sub })),
     },
     gallery: [
-      { role: "product", kind: "photo", image: media.kitClean, fit: "contain" },
       {
-        role: "pain",
-        kind: "overlay",
-        image: lifeImg(
-          "v2Grandparent",
-          "Grandfather feeding his grandson at the kitchen table",
-        ),
-        eyebrow: "The minute every parent fears",
-        headline:
-          "If they start choking at dinner, you'll want it within reach",
-        points: [
-          "Help is 8–12 minutes away",
-          "Brain damage can begin within 4–6",
-        ],
-      },
-      { role: "value", kind: "photo", image: media.everyRoom, fit: "contain" },
-      {
-        role: "value",
-        kind: "overlay",
-        image: lifeImg("v2Car", "RescUAid in a car's centre console"),
-        eyebrow: "Wherever they snack",
-        headline: "In the car, the diaper bag and the nightstand",
+        kind: "headline",
+        image: lifeImg("heroFamily", "RescUAid device on a warm kitchen counter"),
+        eyebrow: "Every room, every age",
+        headline: "Peace of mind at every table your family eats at",
+        sub: "From the high chair to Grandpa's place",
+        proof: "4.8/5 · 10,000+ families",
       },
       {
-        role: "value",
-        kind: "photo",
-        image: media.infographic,
-        fit: "contain",
-      },
-      { role: "how", kind: "photo", image: media.threeSteps, fit: "contain" },
-      { role: "proof", kind: "proof", review: linda },
-      { role: "proof", kind: "proof", review: carol },
-      { role: "proof", kind: "proof", review: loox[0] },
-      { role: "compare", kind: "photo", image: media.vsOthers, fit: "contain" },
-      {
-        role: "guarantee",
-        kind: "guarantee",
-        days: GUARANTEE_DAYS,
-        headline: "Keep it for 90 days, risk-free",
-        body: `If it isn't right for your family, email us within ${GUARANTEE_DAYS} days and we'll refund your order.`,
+        kind: "inUse",
+        image: lifeImg("inUseKitchen", "A woman demonstrating RescUAid on a calm adult at a kitchen table"),
+        eyebrow: "Anyone at the table can do it",
+        headline: "Place, press, pull. No training needed.",
+        points: ["Adult + child masks", "Works on yourself too"],
       },
       {
-        role: "lifestyle",
-        kind: "photo",
-        image: media.giftIdeas,
-        fit: "contain",
+        kind: "beforeAfter",
+        headline: "Same dinner. Different feeling.",
+        before: { image: pairs.dinner.before, label: "Before", caption: "Watching every bite" },
+        after: { image: pairs.dinner.after, label: "After", caption: "Ready, with RescUAid on the counter" },
       },
-      {
-        role: "lifestyle",
-        kind: "photo",
-        image: lifeImg("adGift", "RescUAid tied with a red ribbon"),
-      },
+      insideSlide("One kit covers the whole family"),
+      stepsSlide(),
+      compareSlide("Made for real family life"),
+      reviewSlide(loox[0], "Made for kids and grandparents"),
     ],
     valueProps: {
       eyebrow: "Where families keep theirs",

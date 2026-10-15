@@ -22,7 +22,67 @@ import {
   timeStats,
   underAtcLines,
 } from "../base";
-import type { PdpContent, Review } from "../types";
+import type { PdpContent, Review, Slide } from "../types";
+
+// ── Gallery slide builders (Russab's 7-slide order) ─────────────────────────
+
+/** 3 · The two before → after pairs: the same scene, without and with the device. */
+export const pairs = {
+  dinner: {
+    before: lifeImg("beforeDinner", "A mother watching her toddler eat at a family dinner, nothing within reach"),
+    after: lifeImg("v2Hero", "The same family dinner, relaxed, with RescUAid on the counter"),
+  },
+  alone: {
+    before: lifeImg("beforeAlone", "A woman alone in her kitchen looking at her phone, uneasy"),
+    after: lifeImg("adAlone", "The same woman making tea, calm, with RescUAid on the counter"),
+  },
+};
+
+/** 4 · What's inside: the kit as sold (practice masks and the travel case are extra). */
+export function insideSlide(headline = "Everything in the kit"): Slide {
+  return {
+    kind: "inside",
+    image: lifeImg("adInside", "RescUAid device, adult mask and child mask laid out"),
+    headline,
+    items: [
+      { qty: "1", name: "RescUAid device", note: "One-way valve" },
+      { qty: "1", name: "Adult mask", note: "Teens, adults, seniors" },
+      { qty: "1", name: "Child mask", note: "12 months+, 22 lb+" },
+      { name: "Step-by-step guide", note: "Readable under stress" },
+    ],
+  };
+}
+
+/** 5 · How it works: place, press, pull. */
+export function stepsSlide(headline = "Three moves. No training."): Slide {
+  return {
+    kind: "steps",
+    headline,
+    steps: [
+      { title: "Place", image: lifeImg("stepPlace", "Placing the mask over the mouth and nose") },
+      { title: "Press", image: lifeImg("stepPress", "Pressing the handle down") },
+      { title: "Pull", image: lifeImg("stepPull", "Pulling the handle back") },
+    ],
+  };
+}
+
+/** 6 · Us vs them: four rows from the live store's comparison table. */
+export function compareSlide(headline = "Built for the moment panic sets in"): Slide {
+  const pick = ["Can be used alone", "Needs a lot of strength", "Safe for all ages", "Compact and travel-ready"];
+  return {
+    kind: "compare",
+    headline,
+    us: { name: "RescUAid", image: lifeImg("v1Hero", "RescUAid standing upright on its mask") },
+    them: { name: "Other devices", image: lifeImg("otherDevice", "A generic, bulky plunger-style device") },
+    rows: pick.map((label) => {
+      const r = comparisonRows.find((x) => x.label === label)!;
+      return { label: r.label, us: r.us, them: r.them };
+    }),
+  };
+}
+
+/** 7 · A real review, shown like a screenshot of the review widget. */
+export const reviewSlide = (review: Review, headline?: string): Slide => ({ kind: "review", headline, review });
 
 /** The EMT quote, trimmed for the space under the button. */
 export const expertShort: Review = {

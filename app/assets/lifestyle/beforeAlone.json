@@ -1,0 +1,15 @@
+{
+  "id": "beforeAlone",
+  "model": "gemini-3-pro-image",
+  "aspect": "4:5",
+  "refs": [
+    "@adAlone"
+  ],
+  "prompt": "Recreate the scene from the reference image: the same woman in her seventies, the same kitchen, the same light and camera angle. Change two things only: remove the red handheld device from the counter entirely, and have her stand holding her phone, looking at it with an uneasy, worried expression, her cup of tea set aside. No text, captions, logos, badges or watermarks anywhere in the image. Photorealistic, natural skin tones, anatomically correct hands. Nobody is choking, coughing or in distress.",
+  "usage": {
+    "input": 363,
+    "output": 1265
+  },
+  "costUsd": 0.152526,
+  "generatedAt": "2026-10-15T18:05:12.916Z"
+}

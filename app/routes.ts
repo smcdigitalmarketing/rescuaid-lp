@@ -5,4 +5,6 @@ export default [
   index("routes/home.tsx"),
   route("products/:handle", "routes/products.$handle.tsx"),
   route("pages/:slug", "routes/pages.$slug.tsx"),
+  route("gallery", "routes/gallery.tsx"),
+  route("gallery/render/:slug/:n", "routes/gallery.render.$slug.$n.tsx"),
 ] satisfies RouteConfig;

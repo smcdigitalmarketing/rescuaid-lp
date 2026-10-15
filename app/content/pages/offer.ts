@@ -1,7 +1,7 @@
 import { lifeImg, pageImg } from "~/lib/images";
-import { GUARANTEE_DAYS, LOOX, loox, media } from "../base";
+import { GUARANTEE_DAYS, LOOX, loox } from "../base";
 import type { ConceptPage } from "../types";
-import { shared } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
 
 const carol = loox.find((r) => r.name === "Carol M.")!;
 const sarahW = loox.find((r) => r.name === "Sarah W.")!;
@@ -56,44 +56,30 @@ export const offer: ConceptPage = {
     underAtc: { ...shared.underAtc, urgency: "Offer ends in" },
     gallery: [
       {
-        role: "product",
-        kind: "overlay",
-        image: lifeImg("v3Bundle", "Three RescUAid devices side by side"),
+        kind: "headline",
+        image: lifeImg("heroOffer", "Three RescUAid devices on a bright yellow background"),
         eyebrow: "Buy 2, Get 1 Free",
         headline: "3 kits for $99.99",
-        points: ["You save $79.98", "+ free Emergency CPR Guide"],
-        align: "top",
+        sub: "You save $79.98, plus a free Emergency CPR Guide",
+        proof: "4.8/5 · 389 verified reviews",
       },
       {
-        role: "pain",
-        kind: "overlay",
-        image: pageImg("time-device", "A woman choking at home"),
-        eyebrow: "Why more than one",
-        headline: "The closest kit is the one that helps",
-        points: ["Typical EMS response is 8–12 minutes"],
+        kind: "inUse",
+        image: lifeImg("inUseSelf", "A woman demonstrating self-use of RescUAid in her kitchen"),
+        eyebrow: "One for every room",
+        headline: "Within reach, even when you're alone",
+        points: ["Self-use", "No training"],
       },
       {
-        role: "value",
-        kind: "photo",
-        image: media.infographic,
-        fit: "contain",
+        kind: "beforeAfter",
+        headline: "Be ready in every room",
+        before: { image: pairs.dinner.before, label: "Before", caption: "Nothing within reach" },
+        after: { image: pairs.dinner.after, label: "After", caption: "A kit wherever you eat" },
       },
-      { role: "how", kind: "photo", image: media.threeSteps, fit: "contain" },
-      { role: "proof", kind: "proof", review: carol },
-      { role: "proof", kind: "proof", review: sarahW },
-      { role: "compare", kind: "photo", image: media.vsOthers, fit: "contain" },
-      {
-        role: "guarantee",
-        kind: "guarantee",
-        days: GUARANTEE_DAYS,
-        headline: "Risk-free for 90 days",
-        body: `Not right for you? Email us within ${GUARANTEE_DAYS} days and we'll refund your order.`,
-      },
-      {
-        role: "lifestyle",
-        kind: "photo",
-        image: lifeImg("v3Hero", "RescUAid on a bright yellow background"),
-      },
+      insideSlide("In each of your 3 kits"),
+      stepsSlide(),
+      compareSlide(),
+      reviewSlide(carol, "Families buy more than one"),
     ],
     valueProps: {
       headline: "Why families order three",

@@ -17,7 +17,7 @@ Every page has these seven sections, in this order. A concept can change the cop
 
 | #   | Section          | Its job                                                  | Rules                                                                                                                                                                                                             |
 | --- | ---------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Above the fold   | Sell someone who only looks at the gallery and the title | The gallery tells the whole story (section 2). Then a social proof line above the title, a title that stacks the product name with its benefit, a subheadline, the price with "You save $X", and 3–4 icon bullets |
+| 1   | Above the fold   | Sell someone who only looks at the gallery and the title | The seven-image gallery tells the whole story (section 2). Then a social proof line above the title, a title that stacks the product name with its benefit, a subheadline, the price with "You save $X", and 3–4 icon bullets |
 | 2   | Buy box          | Make choosing effortless                                 | Numbered steps ("Step 1: Choose your bundle"). Every option visible, no dropdowns. Each bundle card shows a thumbnail, the total, the compare-at price, the dollar saving, the per-kit price and gift thumbnails  |
 | 3   | Under the button | Remove the last doubts where friction is highest         | Shipping and returns, one urgency line, the guarantee spelled out (what it is and how to claim it), one short review. No payment badges                                                                           |
 | 4   | Details          | Make sure the main selling point gets read               | Accordions get 1–2% engagement, so the first one is open and holds "why you'll love it". Then an auto-scrolling lifestyle strip                                                                                   |
@@ -27,20 +27,32 @@ Every page has these seven sections, in this order. A concept can change the cop
 
 In the code, the order lives in `app/components/pdp-template.tsx` and the sections in `app/components/sections/`.
 
-## 2. Gallery slide order
+## 2. Gallery: seven images, in this order
 
-Build the gallery as if no one will read anything else on the page. It is the most-clicked element on a product page, and many shoppers decide there or leave.
+Build the gallery as if no one will read anything else on the page. It is the most-clicked element on a product page, and many shoppers decide there or leave. Every concept uses these seven images (Russab's spec):
 
-1. **Product**: a clean shot of what's in the box.
-2. **Pain**: the problem or the old way, if it applies.
-3. **Value props**: 3–4 slides, one differentiator each, with a few words on the image.
-4. **How it works**: 3–4 steps.
-5. **Social proof**: 2–3 slides with real reviews, names and photos.
-6. **Comparison**: us against the alternatives, if it applies.
-7. **Guarantee**: one slide just for the guarantee.
-8. **Lifestyle**: sprinkled in, never the whole gallery.
+| # | Image | What it shows | RescUAid example |
+|---|---|---|---|
+| 1 | Benefit headline | A big benefit headline, not the product shot | "Help clear a blocked airway in 3 simple moves", with the rating |
+| 2 | In use | The product being used, with a benefit overlay | A calm demonstration, "Simple enough to use under stress" |
+| 3 | Before and after | The same scene without and with the product | A family dinner with nothing within reach → the same dinner with RescUAid on the counter |
+| 4 | What's inside | Everything in the package, labelled | Device, adult mask, child mask, guide |
+| 5 | How it works | 3–4 visual steps | Place, press, pull |
+| 6 | Us vs them | Our product against the alternative, row by row | Four rows from the store's comparison table |
+| 7 | Review | A screenshot-style review with a real quote | A Loox review with the customer's photo |
 
-Image specs: square, 1600 px, text readable on a 375 px phone screen, 3–6 words per headline and at most 3 short points. On the concept pages, the text slides are HTML laid over photos, so the copy stays editable; for Shopify they are exported to PNG.
+Image rules:
+
+- **Square, 1600 × 1600**, with text readable on a 375 px phone screen.
+- **Photos carry no words.** All text is laid over the photo by the page, so copy stays sharp, editable and free of AI typos. Generated photography never shows text, logos or badges.
+- **Before and after shows preparation, not an emergency.** Nobody is shown choking, and no medical outcome is claimed.
+- **Reviews are real.** Use the customer's exact words, name and photo, with the source shown.
+
+How the images are made, in this repo:
+
+- The photography is generated with Gemini from `app/data/image-slots.ts` (`npm run images`, about $0.16 an image). Every image keeps its prompt in a `.json` file next to it, so it can be regenerated. The product always matches the reference photo in `assets/reference/device.jpg`.
+- Each slide is defined per concept in `app/content/pages/<concept>.ts` and drawn by `app/components/gallery/slides.tsx`.
+- `npm run gallery:export -- --base <dev server URL>` saves every slide as a 1600 × 1600 JPG in `public/gallery/<concept>/`. The [/gallery](https://rescuaid-lp.vercel.app/gallery) page shows them all, ready to download and upload to Shopify.
 
 ## 3. Copy rules
 

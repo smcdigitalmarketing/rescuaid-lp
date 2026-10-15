@@ -13,6 +13,7 @@ export default {
       "/pages/family",
       "/pages/offer",
       "/pages/premium",
+      "/gallery",
     ];
   },
 } satisfies Config;

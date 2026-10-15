@@ -1,7 +1,7 @@
 import { lifeImg, pageImg } from "~/lib/images";
-import { GUARANTEE_DAYS, LOOX, expert, loox, media } from "../base";
+import { LOOX, expert, loox } from "../base";
 import type { ConceptPage } from "../types";
-import { shared } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
 
 const tom = loox.find((r) => r.name === "Tom R.")!;
 
@@ -56,58 +56,31 @@ export const clinical: ConceptPage = {
     ],
     heroQuote: expert,
     gallery: [
-      { role: "product", kind: "photo", image: media.kitClean, fit: "contain" },
       {
-        role: "pain",
-        kind: "overlay",
-        image: lifeImg(
-          "v1Caregiver",
-          "Daughter and her father at the kitchen table",
-        ),
-        eyebrow: "The gap first aid leaves",
-        headline: "When back blows don't work, every second counts",
-        points: [
-          "Typical EMS response is 8–12 minutes",
-          "Brain damage can begin within 4–6",
-        ],
+        kind: "headline",
+        image: lifeImg("heroClinical", "RescUAid device standing upright on a cool grey background"),
+        eyebrow: "Choking rescue device",
+        headline: "The next step when back blows aren't clearing the airway",
+        sub: "One-way valve. Sealed mask. Adult and child sizes.",
+        proof: "4.8/5 from 389 verified reviews",
       },
       {
-        role: "value",
-        kind: "overlay",
-        image: lifeImg(
-          "v1Valve",
-          "Close-up of the clear mask and one-way valve",
-        ),
-        eyebrow: "How it's built",
-        headline: "Air goes out. Never in.",
-        points: [
-          "Press: air leaves through the one-way valve",
-          "Pull: suction through the sealed mask",
-        ],
-        align: "top",
-      },
-      { role: "value", kind: "photo", image: media.engineered, fit: "contain" },
-      { role: "how", kind: "photo", image: media.howCompress, fit: "contain" },
-      { role: "how", kind: "photo", image: media.threeSteps, fit: "contain" },
-      { role: "how", kind: "photo", image: media.demoGif },
-      { role: "proof", kind: "proof", review: expert },
-      { role: "proof", kind: "proof", review: tom },
-      { role: "compare", kind: "photo", image: media.vsOthers, fit: "contain" },
-      {
-        role: "guarantee",
-        kind: "guarantee",
-        days: GUARANTEE_DAYS,
-        headline: "Risk-free for 90 days",
-        body: `Email us within ${GUARANTEE_DAYS} days if it isn't right for you and we'll refund your order.`,
+        kind: "inUse",
+        image: lifeImg("inUseCaregiver", "A woman demonstrating RescUAid on her father in an armchair"),
+        eyebrow: "How it's designed",
+        headline: "Air goes out, never into the airway",
+        points: ["One-way valve", "Sealed mask", "Repeat if needed"],
       },
       {
-        role: "lifestyle",
-        kind: "photo",
-        image: lifeImg(
-          "adAlone",
-          "Woman in her seventies in her kitchen with RescUAid on the counter",
-        ),
+        kind: "beforeAfter",
+        headline: "Prepared, even when you're alone",
+        before: { image: pairs.alone.before, label: "Before", caption: "Help is 8–12 minutes away" },
+        after: { image: pairs.alone.after, label: "After", caption: "Help within arm's reach" },
       },
+      insideSlide("What's in the kit"),
+      stepsSlide("Place. Press. Pull."),
+      compareSlide("How RescUAid compares"),
+      reviewSlide(expert, "An EMT's verdict"),
     ],
     valueProps: {
       eyebrow: "How it's designed",

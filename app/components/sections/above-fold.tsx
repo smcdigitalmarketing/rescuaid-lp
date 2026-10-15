@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Check, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { PdpContent, Review, Slide } from "~/content/types";
 import { money } from "~/data/catalog";
 import { Icon } from "~/components/icons";
-import { Picture, SourceBadge, Stars } from "~/components/ui";
+import { Picture, Stars } from "~/components/ui";
+import { SlideThumb, SlideView } from "~/components/gallery/slides";
 
 /*
  * Section 1: above the fold. The video's rule: someone who only swipes the
@@ -106,122 +107,6 @@ export function MediaGallery({ slides }: { slides: Slide[] }) {
             <SlideThumb slide={s} />
           </button>
         ))}
-      </div>
-    </div>
-  );
-}
-
-function SlideThumb({ slide }: { slide: Slide }) {
-  switch (slide.kind) {
-    case "photo":
-    case "overlay":
-      return (
-        <Picture
-          image={slide.image}
-          fit={slide.kind === "photo" ? (slide.fit ?? "cover") : "cover"}
-        />
-      );
-    case "proof":
-      return (
-        <span className="grid h-full place-items-center bg-surface text-star">
-          <Stars rating={5} className="size-2" />
-        </span>
-      );
-    case "guarantee":
-      return (
-        <span className="grid h-full place-items-center bg-accent text-[10px] font-bold leading-tight text-accent-ink">
-          {slide.days}
-          <br />
-          DAYS
-        </span>
-      );
-  }
-}
-
-function SlideView({ slide, priority }: { slide: Slide; priority: boolean }) {
-  switch (slide.kind) {
-    case "photo":
-      return (
-        <Picture
-          image={slide.image}
-          priority={priority}
-          fit={slide.fit ?? "cover"}
-          className={slide.fit === "contain" ? "bg-white" : ""}
-        />
-      );
-    case "overlay":
-      return (
-        <div className="relative h-full overflow-hidden">
-          <Picture image={slide.image} priority={priority} />
-          <div
-            className={`absolute inset-x-0 ${slide.align === "top" ? "top-0 bg-gradient-to-b" : "bottom-0 bg-gradient-to-t"} from-black/80 via-black/45 to-transparent p-[6cqw] ${slide.align === "top" ? "pb-[16cqw]" : "pt-[16cqw]"} text-white`}
-          >
-            {slide.eyebrow && (
-              <p className="mb-[1.5cqw] text-[3.2cqw] font-bold uppercase tracking-[0.14em] opacity-90">
-                {slide.eyebrow}
-              </p>
-            )}
-            <p className="display text-[7.4cqw]">{slide.headline}</p>
-            {slide.points && (
-              <ul className="mt-[3cqw] space-y-[1.4cqw] text-[3.8cqw] font-medium">
-                {slide.points.map((pt) => (
-                  <li key={pt} className="flex items-start gap-[1.6cqw]">
-                    <Check
-                      aria-hidden="true"
-                      className="mt-[0.4cqw] size-[4.2cqw] shrink-0"
-                    />
-                    {pt}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      );
-    case "proof":
-      return <ProofSlide review={slide.review} />;
-    case "guarantee":
-      return (
-        <div className="flex h-full flex-col items-center justify-center bg-accent p-[8cqw] text-center text-accent-ink">
-          <div className="grid size-[30cqw] place-items-center rounded-full border-[0.8cqw] border-current">
-            <p className="display text-[11cqw] leading-none">
-              {slide.days}
-              <span className="block text-[3.6cqw] tracking-[0.2em]">DAYS</span>
-            </p>
-          </div>
-          <p className="display mt-[6cqw] text-[7cqw]">{slide.headline}</p>
-          <p className="mt-[3cqw] max-w-[80cqw] text-[3.9cqw] opacity-85">
-            {slide.body}
-          </p>
-        </div>
-      );
-  }
-}
-
-function ProofSlide({ review }: { review: Review }) {
-  return (
-    <div className="relative flex h-full flex-col justify-between bg-surface p-[7cqw]">
-      {review.photo && (
-        <div className="absolute inset-y-0 right-0 w-[42cqw] overflow-hidden">
-          <Picture image={review.photo} />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/30 to-transparent" />
-        </div>
-      )}
-      <div className="relative">
-        <Quote aria-hidden="true" className="size-[9cqw] text-brand" />
-        <Stars rating={review.rating} className="size-[5cqw]" />
-      </div>
-      <p
-        className={`display relative text-[6.2cqw] ${review.photo ? "max-w-[58cqw]" : ""}`}
-      >
-        “{review.quote}”
-      </p>
-      <div className="relative text-[3.6cqw]">
-        <p className="font-bold">{review.name}</p>
-        <p className="text-muted">{review.meta}</p>
-        <div className="mt-[2cqw] origin-left scale-[1.25]">
-          <SourceBadge source={review.source} />
-        </div>
       </div>
     </div>
   );

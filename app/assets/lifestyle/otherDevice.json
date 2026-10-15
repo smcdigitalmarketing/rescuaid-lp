@@ -1,0 +1,12 @@
+{
+  "id": "otherDevice",
+  "model": "gemini-3-pro-image",
+  "aspect": "1:1",
+  "prompt": "Studio product photograph of a generic, unbranded anti-choking suction device: a bulky, oversized clear-plastic plunger with a wide flat handle and a large rubber face mask, looking cumbersome. Seamless muted mid-grey background, flat even light, centred, generous margins. No logos, labels, text, colours or brand marks of any kind; it must not resemble any specific real product. Photorealistic.",
+  "usage": {
+    "input": 83,
+    "output": 1264
+  },
+  "costUsd": 0.151846,
+  "generatedAt": "2026-10-15T18:05:32.769Z"
+}

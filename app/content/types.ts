@@ -7,31 +7,36 @@ import type { IconName } from "~/components/icons";
  * and a few layout options.
  */
 
-/** Which job the slide does in the gallery story (see the SOP's slide order). */
-export type SlideRole =
-  | "product"
-  | "pain"
-  | "value"
-  | "how"
-  | "proof"
-  | "compare"
-  | "guarantee"
-  | "lifestyle";
-
-export type Slide = { role: SlideRole } & (
-  | { kind: "photo"; image: Img; fit?: "cover" | "contain" }
+/**
+ * The product gallery: seven slides, one per job, in this order (Russab's
+ * spec, docs/pdp-template-sop.md §2). Photos carry no words; every word on a
+ * slide is HTML so it stays sharp and editable.
+ */
+export type Slide =
+  /** 1 · A big benefit headline, not the product shot. */
+  | { kind: "headline"; image: Img; eyebrow?: string; headline: string; sub?: string; proof?: string }
+  /** 2 · The product in use, with a benefit overlay. */
+  | { kind: "inUse"; image: Img; eyebrow?: string; headline: string; points?: string[] }
+  /** 3 · Before and after: unprepared → prepared. */
+  | { kind: "beforeAfter"; headline: string; before: BeforeAfterSide; after: BeforeAfterSide }
+  /** 4 · What's inside the package. */
+  | { kind: "inside"; image: Img; headline: string; items: { qty?: string; name: string; note?: string }[] }
+  /** 5 · How it works, in 3–4 visual steps. */
+  | { kind: "steps"; headline: string; steps: { title: string; image: Img }[] }
+  /** 6 · Us vs them. */
   | {
-      kind: "overlay";
-      image: Img;
-      eyebrow?: string;
+      kind: "compare";
       headline: string;
-      points?: string[];
-      /** Where the text block sits on the photo. */
-      align?: "top" | "bottom";
+      us: { name: string; image: Img };
+      them: { name: string; image: Img };
+      rows: { label: string; us: string; them: string }[];
     }
-  | { kind: "proof"; review: Review }
-  | { kind: "guarantee"; days: number; headline: string; body: string }
-);
+  /** 7 · A review screenshot with a real quote. */
+  | { kind: "review"; headline?: string; review: Review };
+
+export type SlideKind = Slide["kind"];
+
+export type BeforeAfterSide = { image: Img; label: string; caption: string };
 
 export type Gift = { title: string; value: number; image: Img };
 
