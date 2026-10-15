@@ -151,12 +151,26 @@ export type PdpContent = {
   safety: string;
 };
 
-export type ThemeName = "store" | "clinical" | "family" | "offer" | "premium";
+export type ThemeName =
+  | "store"
+  | "clinical"
+  | "family"
+  | "offer"
+  | "premium"
+  | "pulse"
+  | "soft"
+  | "field"
+  | "pop";
+
+/** A text wordmark for a brand direction, in place of the store logo. */
+export type Wordmark = { text: string; mark: "plus" | "heart" | "shield" | "spark" };
 
 export type ConceptPage = {
   slug: string;
   /** Internal concept name for the review hub. */
   name: string;
+  /** "brand" = a new brand direction; otherwise an angle on today's RescUAid brand. */
+  group?: "brand";
   path: string;
   theme: ThemeName;
   /** Google Fonts `family=` query for this concept. */
@@ -171,7 +185,19 @@ export type ConceptPage = {
   layout: {
     /** Short page: drops the value-prop slider, lifestyle strip and long review wall. */
     compact?: boolean;
-    valueProps: "alternating" | "cards";
+    valueProps: "alternating" | "cards" | "bento" | "numbered";
+    /** The store logo (default) or a brand direction's own wordmark. */
+    wordmark?: Wordmark;
+    /** Logo left with nav beside it (default), or logo centred with nav below. */
+    header?: "standard" | "centered";
+    /** Gallery left (default) or right of the product info on desktop. */
+    hero?: "split" | "reverse";
+    /** Bundle picker: stacked cards (default), side-by-side columns, or pills plus one detail card. */
+    tiers?: "stack" | "grid" | "pills";
+    /** Review wall: masonry cards (default), compact rows, sticky notes, or a photo wall. */
+    reviews?: "masonry" | "list" | "notes" | "ugc";
+    /** Decorative band between major sections. */
+    divider?: "none" | "wave" | "stripe";
     /** Live countdown in the announcement bar (the store has one). Default true. */
     countdownBar?: boolean;
   };

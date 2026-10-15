@@ -170,7 +170,7 @@ export function BenefitTitle({
   return (
     <div>
       {eyebrow && (
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-muted">
+        <p className="eyebrow mb-2 text-xs font-bold uppercase tracking-[0.16em] text-muted">
           {eyebrow}
         </p>
       )}

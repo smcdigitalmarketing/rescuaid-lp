@@ -177,30 +177,128 @@ function AddOnRow({
   );
 }
 
+/** Side-by-side bundle column: the big price and saving lead. */
+function TierColumn({ tier, selected, onSelect }: { tier: Tier; selected: boolean; onSelect: () => void }) {
+  return (
+    <button
+      type="button"
+      role="radio"
+      aria-checked={selected}
+      onClick={onSelect}
+      className={`relative flex flex-col items-center rounded-card border-2 bg-surface px-2 pb-3 pt-4 text-center transition ${
+        selected ? "border-brand shadow-[0_0_0_3px_color-mix(in_srgb,var(--brand)_15%,transparent)]" : "border-line hover:border-muted"
+      }`}
+    >
+      {tier.badge && (
+        <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand-ink">
+          {tier.badge}
+        </span>
+      )}
+      <span className="size-14 overflow-hidden rounded-[calc(var(--r-card)*0.6)] bg-surface-2">
+        <Picture image={tier.image} fit="contain" />
+      </span>
+      <span className="display mt-2 text-lg leading-tight">
+        {tier.kits} {tier.kits === 1 ? "kit" : "kits"}
+      </span>
+      <span className="text-[11px] leading-tight text-muted">{tier.title}</span>
+      <span className="mt-2 text-lg font-bold">{money(tier.price)}</span>
+      <s className="text-[11px] text-muted">{money(tier.compareAt)}</s>
+      <span className="mt-1.5 rounded-full bg-highlight px-2 py-0.5 text-[11px] font-bold text-highlight-ink">
+        Save {money(tier.compareAt - tier.price)}
+      </span>
+      {tier.gifts.length > 0 && (
+        <span className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-semibold text-success">
+          <GiftIcon aria-hidden="true" className="size-3" />+{tier.gifts.length} free gift{tier.gifts.length > 1 ? "s" : ""}
+        </span>
+      )}
+    </button>
+  );
+}
+
+/** Compact pill for the pills picker; the selected tier's detail card sits below. */
+function TierPill({ tier, selected, onSelect }: { tier: Tier; selected: boolean; onSelect: () => void }) {
+  return (
+    <button
+      type="button"
+      role="radio"
+      aria-checked={selected}
+      onClick={onSelect}
+      className={`flex-1 rounded-btn border-2 px-2 py-2.5 text-center transition ${
+        selected ? "border-brand bg-brand text-brand-ink" : "border-line bg-surface hover:border-muted"
+      }`}
+    >
+      <span className="display block text-lg leading-none">
+        {tier.kits} {tier.kits === 1 ? "kit" : "kits"}
+      </span>
+      <span className={`mt-1 block text-[11px] leading-tight ${selected ? "opacity-90" : "text-muted"}`}>{tier.title}</span>
+    </button>
+  );
+}
+
+function TierDetail({ tier }: { tier: Tier }) {
+  return (
+    <div className="mt-3 flex gap-4 rounded-card bg-surface-2 p-4">
+      <span className="size-20 shrink-0 overflow-hidden rounded-[calc(var(--r-card)*0.6)] bg-surface">
+        <Picture image={tier.image} fit="contain" />
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className="font-bold">{tier.title}</p>
+        <p className="text-sm text-muted">{tier.sub}</p>
+        <p className="mt-1 flex flex-wrap items-baseline gap-2">
+          <span className="text-xl font-bold">{money(tier.price)}</span>
+          <s className="text-sm text-muted">{money(tier.compareAt)}</s>
+          <span className="rounded-full bg-highlight px-2 py-0.5 text-xs font-bold text-highlight-ink">
+            You save {money(tier.compareAt - tier.price)}
+          </span>
+        </p>
+        {tier.gifts.length > 0 && (
+          <p className="mt-1 text-xs text-success">
+            <strong>FREE:</strong> {tier.gifts.map((g) => `${g.title} (${money(g.value)} value)`).join(", ")}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function BuyBox({
   buy,
   state,
   atcRef,
+  variant = "stack",
 }: {
   buy: PdpContent["buy"];
   state: BuyState;
   atcRef: RefObject<HTMLButtonElement | null>;
+  variant?: "stack" | "grid" | "pills";
 }) {
   const save = state.compareAt - state.total;
   return (
     <div id="buy-options" className="scroll-mt-24 space-y-6">
       <div role="radiogroup" aria-label={buy.steps[0]}>
         <StepLabel n={1}>{buy.steps[0]}</StepLabel>
-        <div className="space-y-3">
-          {buy.tiers.map((t) => (
-            <TierCard
-              key={t.id}
-              tier={t}
-              selected={t.id === state.tier.id}
-              onSelect={() => state.setTierId(t.id)}
-            />
-          ))}
-        </div>
+        {variant === "grid" ? (
+          <div className="grid grid-cols-3 gap-2 pt-2">
+            {buy.tiers.map((t) => (
+              <TierColumn key={t.id} tier={t} selected={t.id === state.tier.id} onSelect={() => state.setTierId(t.id)} />
+            ))}
+          </div>
+        ) : variant === "pills" ? (
+          <>
+            <div className="flex gap-2">
+              {buy.tiers.map((t) => (
+                <TierPill key={t.id} tier={t} selected={t.id === state.tier.id} onSelect={() => state.setTierId(t.id)} />
+              ))}
+            </div>
+            <TierDetail tier={state.tier} />
+          </>
+        ) : (
+          <div className="space-y-3">
+            {buy.tiers.map((t) => (
+              <TierCard key={t.id} tier={t} selected={t.id === state.tier.id} onSelect={() => state.setTierId(t.id)} />
+            ))}
+          </div>
+        )}
       </div>
       {buy.addOns.length > 0 && (
         <div>

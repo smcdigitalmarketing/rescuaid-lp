@@ -23,6 +23,10 @@ const CONCEPTS = [
   "/pages/family",
   "/pages/offer",
   "/pages/premium",
+  "/pages/pulse",
+  "/pages/soft",
+  "/pages/field",
+  "/pages/pop",
 ];
 const PAGES = ["/", "/gallery", "/sop", ...CONCEPTS];
 const GALLERY_SLIDES = 7;

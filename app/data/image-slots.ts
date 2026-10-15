@@ -83,6 +83,50 @@ export const imageSlots = {
     refs: ["device"],
   },
 
+  // Brand directions (Pulse, Soft, Field, Pop): one backdrop each, plus scene shots.
+  heroPulse: {
+    id: "heroPulse",
+    alt: "RescUAid device on a graphite surface under hard studio light",
+    prompt: `Precise, technical product photograph: ${DEVICE}, lying perfectly horizontal on a matte graphite-grey surface, lit by a single hard studio light with a crisp shadow, like an engineering spec photo. Cool, exact, minimal. ${HEADLINE_SPACE} ${RULES}`,
+    aspect: "1:1",
+    refs: ["device"],
+  },
+  heroSoft: {
+    id: "heroSoft",
+    alt: "RescUAid device on a soft peach background with a small child's cup",
+    prompt: `Soft, friendly product photograph: ${DEVICE}, resting on a seamless pastel peach background beside a small mint-green toddler sippy cup and a wooden teething ring, gentle diffused light, rounded soft shadows, calm and cheerful nursery mood. ${HEADLINE_SPACE} ${RULES}`,
+    aspect: "1:1",
+    refs: ["device"],
+  },
+  heroField: {
+    id: "heroField",
+    alt: "RescUAid device on dark slate with a rugged first-aid bag",
+    prompt: `Rugged, moody product photograph: ${DEVICE}, lying on dark slate stone beside a black canvas first-aid bag with an orange zip pull and a coiled paracord, low warm side light, deep shadows, outdoor-gear catalogue style. ${HEADLINE_SPACE} ${RULES}`,
+    aspect: "1:1",
+    refs: ["device"],
+  },
+  heroPop: {
+    id: "heroPop",
+    alt: "RescUAid device on a bright violet and pink background",
+    prompt: `Bold, playful pop product photograph: ${DEVICE}, floating at a jaunty angle with a soft drop shadow against a seamless electric violet background with a hot-pink colour block in the lower corner, punchy saturated colours, crisp light. ${HEADLINE_SPACE} ${RULES}`,
+    aspect: "1:1",
+    refs: ["device"],
+  },
+  fieldKit: {
+    id: "fieldKit",
+    alt: "RescUAid packed in an open first-aid kit in a car boot",
+    prompt: `Lifestyle product photograph: an open rugged black first-aid bag in the boot of an SUV at dusk, neatly packed with bandages and gloves, with ${DEVICE} strapped in its own elastic loop at the front, in sharp focus. Warm low light, outdoor adventure mood. ${RULES}`,
+    aspect: "4:3",
+    refs: ["device"],
+  },
+  softNursery: {
+    id: "softNursery",
+    alt: "RescUAid on a pastel nursery shelf next to a high chair",
+    prompt: `Soft lifestyle photograph of a bright pastel kitchen corner: a white high chair with a mint cushion, and on the shelf beside it, in sharp focus, ${DEVICE} next to a stack of small plates and a jar of wooden spoons. Peach and mint tones, gentle morning light, calm and tidy. Nobody is in the frame. ${RULES}`,
+    aspect: "4:3",
+    refs: ["device"],
+  },
+
   // ── 2 · Product in use ───────────────────────────────────────────────────
   inUseKitchen: {
     id: "inUseKitchen",

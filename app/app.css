@@ -176,6 +176,126 @@
   --r-btn: 2px;
 }
 
+/* ── Brand directions ─────────────────────────────────────────────────────── */
+
+/* Pulse: spec-sheet clinical-tech. Paper white, black, signal red, sharp corners. */
+[data-theme="pulse"] {
+  --bg: #f4f4f1;
+  --surface: #ffffff;
+  --surface-2: #ebebe7;
+  --ink: #0e0e0e;
+  --muted: #5c5c58;
+  --line: #d6d6d0;
+  --brand: #ff3b30;
+  --brand-strong: #d92c22;
+  --btn-bg: #0e0e0e;
+  --brand-ink: #ffffff;
+  --accent: #0e0e0e;
+  --accent-ink: #f4f4f1;
+  --highlight: #ff3b30;
+  --highlight-ink: #ffffff;
+  --success: #0e7a43;
+  --star: #0e0e0e;
+  --footer-bg: #0e0e0e;
+  --footer-ink: #f4f4f1;
+  --f-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --f-button: "IBM Plex Mono", ui-monospace, monospace;
+  --f-eyebrow: "IBM Plex Mono", ui-monospace, monospace;
+  --display-weight: 700;
+  --display-tracking: -0.035em;
+  --r-card: 0px;
+  --r-btn: 0px;
+}
+
+/* Soft: friendly DTC. Peach, mint and butter, rounded type, pill shapes. */
+[data-theme="soft"] {
+  --bg: #fff7f2;
+  --surface: #ffffff;
+  --surface-2: #ffeadf;
+  --ink: #3b2a2a;
+  --muted: #7d6563;
+  --line: #f6dccf;
+  --brand: #ff6b5b;
+  --brand-strong: #e85545;
+  --btn-bg: #ff6b5b;
+  --brand-ink: #ffffff;
+  --accent: #2f6f5e;
+  --accent-ink: #ffffff;
+  --highlight: #fff0a8;
+  --highlight-ink: #5a4310;
+  --success: #2f8f6f;
+  --star: #ffb020;
+  --footer-bg: #2f6f5e;
+  --footer-ink: #fff7f2;
+  --f-display: "Fredoka", ui-rounded, system-ui, sans-serif;
+  --f-body: "Nunito", ui-rounded, system-ui, sans-serif;
+  --f-button: "Fredoka", ui-rounded, system-ui, sans-serif;
+  --display-weight: 600;
+  --display-tracking: -0.01em;
+  --r-card: 28px;
+  --r-btn: 999px;
+}
+
+/* Field: rugged emergency gear. Dark mode, safety orange, hazard yellow. */
+[data-theme="field"] {
+  --bg: #0f1110;
+  --surface: #181b19;
+  --surface-2: #222622;
+  --ink: #f1f3ef;
+  --muted: #a3aaa2;
+  --line: #303631;
+  --brand: #ff7a00;
+  --brand-strong: #e06a00;
+  --btn-bg: #ff7a00;
+  --brand-ink: #0f1110;
+  --accent: #ff7a00;
+  --accent-ink: #0f1110;
+  --highlight: #ffd400;
+  --highlight-ink: #0f1110;
+  --success: #6fd38a;
+  --star: #ffd400;
+  --footer-bg: #000000;
+  --footer-ink: #f1f3ef;
+  --f-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --f-body: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --f-button: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --display-weight: 700;
+  --display-case: uppercase;
+  --display-tracking: 0.01em;
+  --r-card: 4px;
+  --r-btn: 4px;
+}
+
+/* Pop: social-native. Electric violet, hot pink, lime, chunky type. */
+[data-theme="pop"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f3f0ff;
+  --ink: #14102b;
+  --muted: #5b5675;
+  --line: #e5e1f7;
+  --brand: #ff2e63;
+  --brand-strong: #e01a50;
+  --btn-bg: linear-gradient(90deg, #ff2e63 0%, #ff7a45 100%);
+  --brand-ink: #ffffff;
+  --accent: #5b2eff;
+  --accent-ink: #ffffff;
+  --highlight: #c6ff3d;
+  --highlight-ink: #14102b;
+  --success: #12a150;
+  --star: #ff2e63;
+  --footer-bg: #14102b;
+  --footer-ink: #ffffff;
+  --f-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --f-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --f-button: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --display-weight: 800;
+  --display-tracking: -0.03em;
+  --r-card: 22px;
+  --r-btn: 14px;
+}
+
 /* Headline type follows the concept: weight, case and tracking are tokens too. */
 @utility display {
   font-family: var(--f-display);
@@ -184,6 +304,11 @@
   letter-spacing: var(--display-tracking);
   line-height: 1.08;
   text-wrap: balance;
+}
+
+/* Small uppercase labels above headings; Pulse sets them in mono. */
+@utility eyebrow {
+  font-family: var(--f-eyebrow, var(--f-body));
 }
 
 @utility btn-primary {
@@ -211,6 +336,18 @@ body:has(> [data-theme="family"]) {
 
 body:has(> [data-theme="premium"]) {
   background: #f7f5f1;
+}
+
+body:has(> [data-theme="pulse"]) {
+  background: #f4f4f1;
+}
+
+body:has(> [data-theme="soft"]) {
+  background: #fff7f2;
+}
+
+body:has(> [data-theme="field"]) {
+  background: #0f1110;
 }
 
 /* Lifestyle strip: two copies of the list scroll left in a loop. */

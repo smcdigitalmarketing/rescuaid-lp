@@ -25,6 +25,7 @@ import {
   ValueProps,
 } from "~/components/sections/value-props";
 import { Faq, FinalProof, GuaranteeBlock } from "~/components/sections/closing";
+import { Divider } from "~/components/sections/divider";
 
 /**
  * The product page template. Every concept renders the video's seven
@@ -45,6 +46,8 @@ export function PdpTemplate({ page }: { page: ConceptPage }) {
       conceptName={page.name}
       announcement={page.content.announcement}
       countdown={page.layout.countdownBar ?? true}
+      wordmark={page.layout.wordmark}
+      header={page.layout.header}
     >
       <PdpBody page={page} />
     </StoreShell>
@@ -54,6 +57,8 @@ export function PdpTemplate({ page }: { page: ConceptPage }) {
 function PdpBody({ page }: { page: ConceptPage }) {
   const c = page.content;
   const compact = page.layout.compact ?? false;
+  const reverse = page.layout.hero === "reverse";
+  const divider = page.layout.divider;
   const buy = useBuyState(c.buy, page.slug, PRODUCT_NAME);
   const atcRef = useRef<HTMLButtonElement>(null);
   const toBuy = () =>
@@ -64,7 +69,7 @@ function PdpBody({ page }: { page: ConceptPage }) {
       {/* 1–4: product section */}
       <section id="buy" className="scroll-mt-16 px-4 pb-10 pt-4 md:pt-10">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] md:gap-12">
-          <div className="min-w-0 md:sticky md:top-24 md:self-start">
+          <div className={`min-w-0 md:sticky md:top-24 md:self-start ${reverse ? "md:order-2" : ""}`}>
             <MediaGallery slides={c.gallery} />
           </div>
           <div className="min-w-0 space-y-6">
@@ -82,16 +87,18 @@ function PdpBody({ page }: { page: ConceptPage }) {
               <IconBullets items={c.bullets} />
               {c.heroQuote && <HeroQuote review={c.heroQuote} />}
             </div>
-            <BuyBox buy={c.buy} state={buy} atcRef={atcRef} />
+            <BuyBox buy={c.buy} state={buy} atcRef={atcRef} variant={page.layout.tiers} />
             <UnderAtc data={c.underAtc} />
             <Accordions items={c.accordions} />
           </div>
         </div>
       </section>
       {!compact && <LifestyleMarquee images={c.lifestyle} />}
+      <Divider kind={divider} />
 
       {/* 5: social proof */}
-      <ReviewsWall data={c.reviews} compact={compact} />
+      <ReviewsWall data={c.reviews} compact={compact} variant={page.layout.reviews} />
+      <Divider kind={divider} />
 
       {/* 6: value props */}
       <ValueProps
@@ -105,6 +112,8 @@ function PdpBody({ page }: { page: ConceptPage }) {
       <HowItWorks data={c.howItWorks} safety={c.safety} />
       <StatsBand data={c.stats} />
       <Comparison data={c.comparison} />
+
+      <Divider kind={divider} />
 
       {/* 7: closing */}
       <GuaranteeBlock data={c.guarantee} onShop={toBuy} />

@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { ArrowRight } from "lucide-react";
 import type { Route } from "./+types/home";
 import { pages } from "~/content/pages";
+import type { ConceptPage } from "~/content/types";
 import { portedAt } from "~/data/catalog";
 import { fontHref } from "~/lib/seo";
 import { Logo } from "~/components/ui";
@@ -67,68 +68,31 @@ export default function Home() {
           Landing page proof of concept
         </p>
         <h1 className="mt-2 max-w-3xl text-4xl font-bold tracking-tight md:text-5xl">
-          Five ways to sell RescUAid 2.0, all built on one product page template
+          {pages.length} ways to sell RescUAid 2.0, all built on one product page template
         </h1>
         <p className="mt-4 max-w-3xl text-lg text-black/60">
           Every page uses the same seven-section structure from the “premium
           product page” framework, with the real RescUAid products, prices,
-          photos and reviews from rescuaid.com. They differ in angle, look and
-          offer emphasis, so each one tests a single idea. On the live store
-          each would be its own page on rescuaid.com.
+          photos and reviews from rescuaid.com. The first five are angles on
+          today's RescUAid brand; the next four are new brand directions with
+          their own look, type and layouts. Each tests a single idea, and on
+          the live store each would be its own page on rescuaid.com.
         </p>
 
-        <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {pages.map((p) => {
-            const img = p.cover;
-            return (
-              <li key={p.slug}>
-                <Link
-                  to={p.path}
-                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-black/10 bg-white transition hover:-translate-y-0.5 hover:shadow-lg"
-                >
-                  <div className="aspect-[16/10] overflow-hidden bg-black/5">
-                    {img && (
-                      <img
-                        src={img.src}
-                        alt=""
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                      />
-                    )}
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <p className="font-mono text-[11px] text-black/45">
-                      {p.path}
-                    </p>
-                    <h2 className="mt-1 text-xl font-bold">{p.name}</h2>
-                    <p className="mt-2 text-sm text-black/65">{p.hypothesis}</p>
-                    <p className="mt-3 text-xs">
-                      <span className="font-semibold">Traffic: </span>
-                      <span className="text-black/60">{p.traffic}</span>
-                    </p>
-                    <ul className="mt-3 flex flex-wrap gap-1.5">
-                      {p.principles.map((x) => (
-                        <li
-                          key={x}
-                          className="rounded-full bg-black/5 px-2 py-0.5 text-[11px] text-black/70"
-                        >
-                          {x}
-                        </li>
-                      ))}
-                    </ul>
-                    <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-[#c62828]">
-                      Open page
-                      <ArrowRight
-                        aria-hidden="true"
-                        className="size-4 transition group-hover:translate-x-0.5"
-                      />
-                    </span>
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        {[
+          { title: "Angles on today's brand", sub: "Same RescUAid logo and look, each page testing one angle or offer.", list: pages.filter((p) => !p.group) },
+          { title: "New brand directions", sub: "Each with its own wordmark, palette, type and layouts.", list: pages.filter((p) => p.group === "brand") },
+        ].map((g) => (
+          <section key={g.title} className="mt-12">
+            <h2 className="text-2xl font-bold">{g.title}</h2>
+            <p className="mt-1 text-sm text-black/60">{g.sub}</p>
+            <ul className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {g.list.map((p) => (
+                <ConceptCard key={p.slug} p={p} />
+              ))}
+            </ul>
+          </section>
+        ))}
 
         <Link
           to="/gallery"
@@ -184,5 +148,40 @@ export default function Home() {
         </p>
       </main>
     </div>
+  );
+}
+
+function ConceptCard({ p }: { p: ConceptPage }) {
+  return (
+    <li>
+      <Link
+        to={p.path}
+        className="group flex h-full flex-col overflow-hidden rounded-xl border border-black/10 bg-white transition hover:-translate-y-0.5 hover:shadow-lg"
+      >
+        <div className="aspect-[16/10] overflow-hidden bg-black/5">
+          <img src={p.cover.src} alt="" className="h-full w-full object-cover" loading="lazy" />
+        </div>
+        <div className="flex flex-1 flex-col p-5">
+          <p className="font-mono text-[11px] text-black/45">{p.path}</p>
+          <h3 className="mt-1 text-xl font-bold">{p.name}</h3>
+          <p className="mt-2 text-sm text-black/65">{p.hypothesis}</p>
+          <p className="mt-3 text-xs">
+            <span className="font-semibold">Traffic: </span>
+            <span className="text-black/60">{p.traffic}</span>
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-1.5">
+            {p.principles.map((x) => (
+              <li key={x} className="rounded-full bg-black/5 px-2 py-0.5 text-[11px] text-black/70">
+                {x}
+              </li>
+            ))}
+          </ul>
+          <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-[#c62828]">
+            Open page
+            <ArrowRight aria-hidden="true" className="size-4 transition group-hover:translate-x-0.5" />
+          </span>
+        </div>
+      </Link>
+    </li>
   );
 }

@@ -12,8 +12,63 @@ export function ValueProps({
   style,
 }: {
   data: PdpContent["valueProps"];
-  style: "alternating" | "cards";
+  style: "alternating" | "cards" | "bento" | "numbered";
 }) {
+  if (style === "bento") {
+    // One large tile, then smaller ones around it: a spec-sheet grid.
+    return (
+      <Section eyebrow={data.eyebrow} title={data.headline}>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[220px]">
+          {data.items.map((v, i) => (
+            <article
+              key={v.headline}
+              className={`group relative overflow-hidden rounded-card border border-line bg-surface ${
+                i === 0 ? "sm:col-span-2 lg:row-span-2" : i === 3 && data.items.length === 4 ? "lg:col-span-2" : ""
+              }`}
+            >
+              <div className={i === 0 ? "aspect-[4/3] lg:absolute lg:inset-0 lg:aspect-auto" : "aspect-[16/9] lg:absolute lg:inset-0 lg:aspect-auto"}>
+                <Picture image={v.image} />
+              </div>
+              <div className="p-5 lg:absolute lg:inset-x-0 lg:bottom-0 lg:bg-gradient-to-t lg:from-black/85 lg:via-black/55 lg:to-transparent lg:pt-16 lg:text-white">
+                <p className="eyebrow text-[11px] font-bold uppercase tracking-[0.16em] text-brand lg:text-white/80">
+                  {String(i + 1).padStart(2, "0")}
+                  {v.eyebrow && ` · ${v.eyebrow}`}
+                </p>
+                <h3 className={`display mt-1 ${i === 0 ? "text-2xl md:text-3xl" : "text-xl"}`}>{v.headline}</h3>
+                <p className={`mt-2 text-sm leading-relaxed text-muted lg:text-white/80 ${i === 0 ? "" : "lg:line-clamp-2"}`}>
+                  {v.body}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Section>
+    );
+  }
+  if (style === "numbered") {
+    // A numbered checklist: big numbers, benefit headline, a small photo.
+    return (
+      <Section eyebrow={data.eyebrow} title={data.headline}>
+        <ol className="mx-auto max-w-4xl divide-y divide-line border-y border-line">
+          {data.items.map((v, i) => (
+            <li key={v.headline} className="grid grid-cols-[auto_1fr] items-center gap-5 py-6 md:grid-cols-[auto_1fr_220px] md:gap-8">
+              <span className="display text-5xl text-brand md:text-6xl">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                {v.eyebrow && (
+                  <p className="eyebrow text-xs font-bold uppercase tracking-[0.16em] text-muted">{v.eyebrow}</p>
+                )}
+                <h3 className="display mt-1 text-2xl md:text-3xl">{v.headline}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-muted">{v.body}</p>
+              </div>
+              <div className="col-span-2 aspect-[16/9] overflow-hidden rounded-card md:col-span-1 md:aspect-[4/3]">
+                <Picture image={v.image} />
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Section>
+    );
+  }
   if (style === "cards") {
     return (
       <Section eyebrow={data.eyebrow} title={data.headline}>
@@ -28,7 +83,7 @@ export function ValueProps({
               </div>
               <div className="p-6">
                 {v.eyebrow && (
-                  <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand">
+                  <p className="eyebrow mb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand">
                     {v.eyebrow}
                   </p>
                 )}
@@ -58,7 +113,7 @@ export function ValueProps({
             </div>
             <div>
               {v.eyebrow && (
-                <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-brand">
+                <p className="eyebrow mb-3 text-xs font-bold uppercase tracking-[0.16em] text-brand">
                   {v.eyebrow}
                 </p>
               )}
@@ -108,7 +163,7 @@ export function HowItWorks({
               <Picture image={s.image} />
             </div>
             <div className="p-5">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand">
+              <p className="eyebrow text-xs font-bold uppercase tracking-[0.16em] text-brand">
                 Step {i + 1}
               </p>
               <h3 className="display mt-1 text-2xl">{s.title}</h3>

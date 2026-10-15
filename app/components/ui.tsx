@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { Star } from "lucide-react";
+import { Heart, Plus, ShieldCheck, Sparkles, Star } from "lucide-react";
 import logoUrl from "~/assets/brand/rescuaid-logo.webp";
-import type { ReviewSource } from "~/content/types";
+import type { ReviewSource, Wordmark } from "~/content/types";
 import type { Img } from "~/lib/images";
 
 export function Logo({ className = "h-9" }: { className?: string }) {
@@ -13,6 +13,22 @@ export function Logo({ className = "h-9" }: { className?: string }) {
       height={216}
       className={`w-auto ${className}`}
     />
+  );
+}
+
+const MARKS = { plus: Plus, heart: Heart, shield: ShieldCheck, spark: Sparkles };
+
+/** A brand direction's wordmark, or the store logo when the concept has none. */
+export function BrandMark({ wordmark, className = "h-8 md:h-9" }: { wordmark?: Wordmark; className?: string }) {
+  if (!wordmark) return <Logo className={className} />;
+  const Mark = MARKS[wordmark.mark];
+  return (
+    <span className="inline-flex items-center gap-2 text-ink">
+      <span className="grid size-8 place-items-center rounded-btn bg-brand text-brand-ink">
+        <Mark aria-hidden="true" className="size-4.5" strokeWidth={2.5} />
+      </span>
+      <span className="display text-[1.45rem] leading-none">{wordmark.text}</span>
+    </span>
   );
 }
 
@@ -96,7 +112,7 @@ export function Section({
         {(eyebrow || title || sub) && (
           <header className="mx-auto mb-10 max-w-2xl text-center">
             {eyebrow && (
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              <p className="eyebrow mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand">
                 {eyebrow}
               </p>
             )}

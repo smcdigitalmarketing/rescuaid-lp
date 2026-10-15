@@ -1,6 +1,6 @@
 # Product Landing Page SOP
 
-Every product landing page we build uses one seven-section structure, so we can launch pages fast and test one idea at a time. It follows Arsh Sanwarwala's framework in [How To Build a Product Page SO Premium They Beg You To Buy](https://www.youtube.com/watch?v=ngXi-No3s2o). The five RescUAid concept pages at [rescuaid-lp.vercel.app](https://rescuaid-lp.vercel.app/) are built this way.
+Every product landing page we build uses one seven-section structure, so we can launch pages fast and test one idea at a time. It follows Arsh Sanwarwala's framework in [How To Build a Product Page SO Premium They Beg You To Buy](https://www.youtube.com/watch?v=ngXi-No3s2o). The nine RescUAid concept pages at [rescuaid-lp.vercel.app](https://rescuaid-lp.vercel.app/) are built this way.
 
 The video defines a premium page as one people want to buy from, and that comes down to trust. Four things build it:
 
@@ -82,7 +82,19 @@ A new concept is one content file plus, if it needs a new look, one theme block.
 4. Rewrite only what the concept changes: the title, bullets, gallery, value props and which reviews lead. Everything else is shared.
 5. Give it its own URL, `/pages/<name>`, and add it to the review page.
 
-In the code: copy a file in `app/content/pages/` and set its `slug`, `name`, `path`, `hypothesis`, `traffic` and `cover`. For a new look, add a `[data-theme="<name>"]` block to `app/app.css`, the name to `ThemeName` in `app/content/types.ts`, and the Google Fonts query to the page's `fonts`. Register the page in `app/content/pages/index.ts` and add its URL to `prerender()` in `react-router.config.ts`. A push to `main` deploys it.
+A concept can be an **angle on today's brand** (same logo and look) or a **new brand direction** with its own wordmark, palette, type and layouts. Brand directions pick from these layout options, so they look different while the section order stays the same:
+
+| Option | Choices |
+|---|---|
+| Logo | The store logo, or a wordmark (text plus a small mark) |
+| Header | Logo left with nav, or logo centred |
+| Hero | Gallery left or right of the product info |
+| Bundle picker | Stacked cards, side-by-side columns, or pills with one detail card |
+| Reviews | Masonry cards, compact rows, sticky notes, or a photo wall |
+| Value props | Alternating rows, cards, bento grid, or numbered list |
+| Dividers | None, soft wave, or hazard stripe |
+
+In the code: copy a file in `app/content/pages/` and set its `slug`, `name`, `path`, `hypothesis`, `traffic` and `cover` (and `group: "brand"` for a brand direction). Layout options live in its `layout` block. For a new look, add a `[data-theme="<name>"]` block to `app/app.css`, the name to `ThemeName` in `app/content/types.ts`, and the Google Fonts query to the page's `fonts`. Register the page in `app/content/pages/index.ts` and add its URL to `prerender()` in `react-router.config.ts`. A push to `main` deploys it.
 
 ## 5. Measuring which page wins
 

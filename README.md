@@ -1,6 +1,6 @@
 # rescuaid-lp
 
-Landing page proof of concept for **RescUAid 2.0**. It mocks rescuaid.com with the real products, prices, photos and reviews, and holds five landing pages. All five follow the same seven-section product page template (see [docs/pdp-template-sop.md](docs/pdp-template-sop.md)), and each one tests a different idea.
+Landing page proof of concept for **RescUAid 2.0**. It mocks rescuaid.com with the real products, prices, photos and reviews, and holds nine landing pages: five angles on today's brand and four new brand directions. All nine follow the same seven-section product page template (see [docs/pdp-template-sop.md](docs/pdp-template-sop.md)), and each one tests a different idea.
 
 ## SOP
 
@@ -20,6 +20,10 @@ Cart and checkout are mocked. Nothing is charged and nothing is sent to Shopify.
 | `/pages/family`                                              | Warm family story   | People-led copy, bundles anchored to rooms              |
 | `/pages/offer`                                               | Offer-first, mobile | Bundle math and gifts first, on a short page            |
 | `/pages/premium`                                             | Premium minimal     | Whether a premium editorial look lifts conversion       |
+| `/pages/pulse`                                               | Pulse (new brand)   | Spec-sheet clinical-tech: numbers, mono labels, sharp   |
+| `/pages/soft`                                                | Soft (new brand)    | Friendly family DTC: rounded, pastel, sticky notes      |
+| `/pages/field`                                               | Field (new brand)   | Rugged emergency gear: dark, safety orange, stripes     |
+| `/pages/pop`                                                 | Pop (new brand)     | Social-native: loud colour, photo-wall reviews          |
 
 ## Getting started
 

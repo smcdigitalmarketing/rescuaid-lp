@@ -1,11 +1,11 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router";
 import { ArrowLeft, Menu, ShoppingBag, X } from "lucide-react";
-import type { ThemeName } from "~/content/types";
+import type { ThemeName, Wordmark } from "~/content/types";
 import { SUPPORT_EMAIL, GUARANTEE_DAYS } from "~/content/base";
 import { CartProvider, useCart } from "~/lib/mock-cart";
 import { useCountdown } from "~/lib/use-countdown";
-import { Logo } from "~/components/ui";
+import { BrandMark } from "~/components/ui";
 import { STORE_URL } from "~/lib/seo";
 import { CartDrawer, CheckoutPreview } from "./cart";
 
@@ -18,12 +18,16 @@ export function StoreShell({
   conceptName,
   announcement,
   countdown = true,
+  wordmark,
+  header = "standard",
   children,
 }: {
   theme: ThemeName;
   conceptName: string;
   announcement: string;
   countdown?: boolean;
+  wordmark?: Wordmark;
+  header?: "standard" | "centered";
   children: ReactNode;
 }) {
   return (
@@ -40,7 +44,7 @@ export function StoreShell({
         </a>
         <PreviewStrip name={conceptName} />
         <Announcement text={announcement} countdown={countdown} />
-        <Header />
+        <Header wordmark={wordmark} variant={header} />
         <main id="top">{children}</main>
         <Footer />
         <CartDrawer />
@@ -91,58 +95,78 @@ const NAV = [
   { href: "#faq", label: "Contact" },
 ];
 
-function Header() {
+function Header({ wordmark, variant }: { wordmark?: Wordmark; variant: "standard" | "centered" }) {
   const { count, setOpen } = useCart();
   const [menu, setMenu] = useState(false);
+  const centered = variant === "centered";
+
+  const menuButton = (
+    <button
+      type="button"
+      onClick={() => setMenu((v) => !v)}
+      className="-ml-2 rounded-full p-2 hover:bg-surface-2 md:hidden"
+      aria-label={menu ? "Close menu" : "Open menu"}
+      aria-expanded={menu}
+      aria-controls="mobile-menu"
+    >
+      {menu ? <X aria-hidden="true" className="size-6" /> : <Menu aria-hidden="true" className="size-6" />}
+    </button>
+  );
+  const logo = (
+    <a href="#top" className="shrink-0" aria-label="RescUAid home">
+      <BrandMark wordmark={wordmark} />
+    </a>
+  );
+  const nav = (
+    <nav aria-label="Main" className="hidden gap-7 text-sm text-muted md:flex">
+      {NAV.map((n) => (
+        <a key={n.href} href={n.href} className="hover:text-ink">
+          {n.label}
+        </a>
+      ))}
+    </nav>
+  );
+  const cart = (
+    <button
+      type="button"
+      onClick={() => setOpen(true)}
+      className="relative justify-self-end rounded-full p-2 hover:bg-surface-2"
+      aria-label={`Open cart, ${count} item${count === 1 ? "" : "s"}`}
+    >
+      <ShoppingBag aria-hidden="true" className="size-6" />
+      {count > 0 && (
+        <span className="absolute -right-0.5 -top-0.5 grid size-5 place-items-center rounded-full bg-brand text-[11px] font-bold text-brand-ink">
+          {count}
+        </span>
+      )}
+    </button>
+  );
+
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-surface/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-        <div className="flex items-center gap-1">
-          <button
-            type="button"
-            onClick={() => setMenu((v) => !v)}
-            className="-ml-2 rounded-full p-2 hover:bg-surface-2 md:hidden"
-            aria-label={menu ? "Close menu" : "Open menu"}
-            aria-expanded={menu}
-            aria-controls="mobile-menu"
-          >
-            {menu ? (
-              <X aria-hidden="true" className="size-6" />
-            ) : (
-              <Menu aria-hidden="true" className="size-6" />
-            )}
-          </button>
-          <a href="#top" className="shrink-0" aria-label="RescUAid home">
-            <Logo className="h-8 md:h-9" />
-          </a>
-        </div>
-        <nav aria-label="Main" className="hidden gap-7 text-sm text-muted md:flex">
-          {NAV.map((n) => (
-            <a key={n.href} href={n.href} className="hover:text-ink">
-              {n.label}
-            </a>
-          ))}
-        </nav>
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="relative rounded-full p-2 hover:bg-surface-2"
-          aria-label={`Open cart, ${count} item${count === 1 ? "" : "s"}`}
-        >
-          <ShoppingBag aria-hidden="true" className="size-6" />
-          {count > 0 && (
-            <span className="absolute -right-0.5 -top-0.5 grid size-5 place-items-center rounded-full bg-brand text-[11px] font-bold text-brand-ink">
-              {count}
-            </span>
-          )}
-        </button>
+      {/* Three slots: [menu + logo | nav | cart], or centred: [menu + nav | logo | cart]. */}
+      <div className="mx-auto grid h-16 max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-4">
+        {centered ? (
+          <>
+            <div className="flex items-center gap-1">
+              {menuButton}
+              {nav}
+            </div>
+            {logo}
+          </>
+        ) : (
+          <>
+            <div className="flex items-center gap-1">
+              {menuButton}
+              {logo}
+            </div>
+            <div className="justify-self-center">{nav}</div>
+          </>
+        )}
+        {cart}
       </div>
       {menu && (
-        <nav
-          id="mobile-menu"
-          aria-label="Main"
-          className="border-t border-line bg-surface px-4 pb-4 md:hidden"
-        >
+        <nav id="mobile-menu" aria-label="Main" className="border-t border-line bg-surface px-4 pb-4 md:hidden">
           {NAV.map((n) => (
             <a
               key={n.href}

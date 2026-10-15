@@ -1,0 +1,15 @@
+{
+  "id": "softNursery",
+  "model": "gemini-3-pro-image",
+  "aspect": "4:3",
+  "refs": [
+    "device"
+  ],
+  "prompt": "Soft lifestyle photograph of a bright pastel kitchen corner: a white high chair with a mint cushion, and on the shelf beside it, in sharp focus, the RescUAid anti-choking device from the first reference image (a matte red anodized-aluminium handheld cylinder with knurled grip panels, a white square label with a red arrow that always points away from the mask toward the capped handle end, and a clear soft silicone face mask attached to one end) next to a stack of small plates and a jar of wooden spoons. Peach and mint tones, gentle morning light, calm and tidy. Nobody is in the frame. Use the reference image only to match the device's exact shape, colour, label and mask. Do not copy its background, angle or composition. Show exactly one device unless the prompt asks for more. No leaflets, cards, packaging, pouches or printed paper. No text, captions, logos, badges, seals, certification marks or watermarks anywhere in the image. Photorealistic commercial photography, natural skin tones, anatomically correct hands.",
+  "usage": {
+    "input": 475,
+    "output": 1295
+  },
+  "costUsd": 0.15635,
+  "generatedAt": "2026-10-15T21:03:42.860Z"
+}

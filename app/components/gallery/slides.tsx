@@ -24,7 +24,7 @@ export function SlideView({
           <Picture image={slide.image} priority={priority} />
           <div className="absolute inset-x-0 top-0 bg-gradient-to-b from-bg from-40% via-bg/85 to-transparent px-[7cqw] pb-[16cqw] pt-[8cqw]">
             {slide.eyebrow && (
-              <p className="mb-[2cqw] text-[3.3cqw] font-bold uppercase tracking-[0.16em] text-brand">
+              <p className="eyebrow mb-[2cqw] text-[3.3cqw] font-bold uppercase tracking-[0.16em] text-brand">
                 {slide.eyebrow}
               </p>
             )}
@@ -50,7 +50,7 @@ export function SlideView({
           <Picture image={slide.image} priority={priority} />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent p-[6cqw] pt-[18cqw] text-white">
             {slide.eyebrow && (
-              <p className="mb-[1.5cqw] text-[3.2cqw] font-bold uppercase tracking-[0.14em] opacity-90">
+              <p className="eyebrow mb-[1.5cqw] text-[3.2cqw] font-bold uppercase tracking-[0.14em] opacity-90">
                 {slide.eyebrow}
               </p>
             )}

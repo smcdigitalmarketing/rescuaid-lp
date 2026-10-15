@@ -13,6 +13,10 @@ export default {
       "/pages/family",
       "/pages/offer",
       "/pages/premium",
+      "/pages/pulse",
+      "/pages/soft",
+      "/pages/field",
+      "/pages/pop",
       "/gallery",
       "/sop",
     ];

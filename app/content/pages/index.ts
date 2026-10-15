@@ -4,6 +4,10 @@ import { clinical } from "./clinical";
 import { family } from "./family";
 import { offer } from "./offer";
 import { premium } from "./premium";
+import { pulse } from "./pulse";
+import { soft } from "./soft";
+import { field } from "./field";
+import { pop } from "./pop";
 
 /** Every landing page, in the order the review hub lists them. */
 export const pages: ConceptPage[] = [
@@ -12,6 +16,10 @@ export const pages: ConceptPage[] = [
   family,
   offer,
   premium,
+  pulse,
+  soft,
+  field,
+  pop,
 ];
 
 /** Concepts served at /pages/<slug>. The baseline lives at the product URL. */
