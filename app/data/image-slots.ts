@@ -127,6 +127,50 @@ export const imageSlots = {
     refs: ["device"],
   },
 
+  // More brand directions (Heritage, Retro, Story, Luxe).
+  heroHeritage: {
+    id: "heroHeritage",
+    alt: "RescUAid device on a wooden pantry shelf beside glass jars",
+    prompt: `Classic, trustworthy still-life photograph: ${DEVICE}, standing on a solid oak pantry shelf beside glass storage jars of oats and dried beans and a folded linen tea towel, warm window light, deep bottle-green painted wall behind, heritage household feel. ${HEADLINE_SPACE} ${RULES}`,
+    aspect: "1:1",
+    refs: ["device"],
+  },
+  heroRetro: {
+    id: "heroRetro",
+    alt: "RescUAid device on a mustard kitchen counter in a 1970s-style kitchen",
+    prompt: `Warm retro product photograph: ${DEVICE}, on a mustard-yellow laminate kitchen counter beside an orange ceramic bowl of oranges, a 1970s-style kitchen behind in burnt orange, avocado green and brown wood tones, warm afternoon sun, nostalgic film look. ${HEADLINE_SPACE} ${RULES}`,
+    aspect: "1:1",
+    refs: ["device"],
+  },
+  heroStory: {
+    id: "heroStory",
+    alt: "RescUAid device on a family dining table after dinner",
+    prompt: `Documentary-style editorial photograph: ${DEVICE}, resting on a wooden family dining table among half-finished plates, cups and a child's plastic beaker after dinner, soft overcast window light, natural and honest, shallow depth of field. No people visible. ${HEADLINE_SPACE} ${RULES}`,
+    aspect: "1:1",
+    refs: ["device"],
+  },
+  heroLuxe: {
+    id: "heroLuxe",
+    alt: "RescUAid device in an open black gift box with a champagne ribbon",
+    prompt: `Luxury gifting product photograph: ${DEVICE}, nestled in an open matte-black gift box lined with black tissue, a champagne-gold satin ribbon draped beside it, on a dark charcoal surface, dramatic soft spotlight from above, elegant and quiet. ${HEADLINE_SPACE} ${RULES}`,
+    aspect: "1:1",
+    refs: ["device"],
+  },
+  heritageKitchen: {
+    id: "heritageKitchen",
+    alt: "A grandmother at a farmhouse table with RescUAid on the dresser behind her",
+    prompt: `Warm, classic lifestyle photograph: a grandmother in her seventies setting the table in a farmhouse kitchen with a bottle-green painted dresser behind her; on the dresser shelf, in sharp focus, sits ${DEVICE} beside blue-and-white plates. Soft window light, calm and homely. Nobody is choking or distressed. ${RULES}`,
+    aspect: "4:3",
+    refs: ["device"],
+  },
+  luxeGift: {
+    id: "luxeGift",
+    alt: "Hands handing over a black gift box with a champagne ribbon",
+    prompt: `Elegant lifestyle photograph: two pairs of hands exchanging a matte-black gift box tied with a champagne-gold ribbon across a dinner table set with candles, ${DEVICE} visible beside the box on the linen tablecloth, warm candlelight, dark moody palette. ${RULES}`,
+    aspect: "4:3",
+    refs: ["device"],
+  },
+
   // ── 2 · Product in use ───────────────────────────────────────────────────
   inUseKitchen: {
     id: "inUseKitchen",

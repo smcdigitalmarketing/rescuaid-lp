@@ -1,8 +1,23 @@
 /**
  * Decorative band between major sections, part of a brand direction's look:
- * a soft wave (Soft) or a hazard stripe (Field).
+ * a soft wave (Soft, Retro), a hazard stripe (Field), a double rule (Story)
+ * or a centred ornament (Heritage, Luxe).
  */
-export function Divider({ kind }: { kind?: "none" | "wave" | "stripe" }) {
+export function Divider({ kind }: { kind?: "none" | "wave" | "stripe" | "rule" | "ornament" }) {
+  if (kind === "rule")
+    return (
+      <div aria-hidden="true" className="bg-bg px-4">
+        <div className="mx-auto h-1.5 max-w-6xl border-y border-ink" />
+      </div>
+    );
+  if (kind === "ornament")
+    return (
+      <div aria-hidden="true" className="flex items-center justify-center gap-4 bg-bg px-4 py-6 text-brand">
+        <span className="h-px w-24 bg-current opacity-60" />
+        <span className="text-lg leading-none">✦</span>
+        <span className="h-px w-24 bg-current opacity-60" />
+      </div>
+    );
   if (kind === "wave")
     return (
       <div aria-hidden="true" className="bg-bg text-surface-2">

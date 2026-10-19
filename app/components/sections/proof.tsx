@@ -136,6 +136,27 @@ function ReviewTile({ review: r, i }: { review: Review; i: number }) {
   );
 }
 
+/** Pull quote: large serif words, a hairline rule, then who said it and where. */
+function ReviewQuote({ review: r }: { review: Review }) {
+  return (
+    <figure className="break-inside-avoid border-t border-line pt-6">
+      <span aria-hidden="true" className="display block text-5xl leading-none text-brand">“</span>
+      <blockquote className="display -mt-2 text-2xl leading-snug md:text-[1.7rem]">{r.quote}</blockquote>
+      <figcaption className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+        {r.avatar && (
+          <span className="size-8 overflow-hidden rounded-full">
+            <Picture image={r.avatar} />
+          </span>
+        )}
+        <strong>{r.name}</strong>
+        <span className="text-muted">{r.meta}</span>
+        <Stars rating={r.rating} className="size-3.5" />
+        <SourceBadge source={r.source} />
+      </figcaption>
+    </figure>
+  );
+}
+
 export function ReviewsWall({
   data,
   compact = false,
@@ -143,9 +164,9 @@ export function ReviewsWall({
 }: {
   data: PdpContent["reviews"];
   compact?: boolean;
-  variant?: "masonry" | "list" | "notes" | "ugc";
+  variant?: "masonry" | "list" | "notes" | "ugc" | "quotes";
 }) {
-  const first = variant === "ugc" ? 8 : compact ? 6 : 9;
+  const first = variant === "ugc" ? 8 : variant === "quotes" ? 6 : compact ? 6 : 9;
   const [all, setAll] = useState(false);
   const shown = all ? data.items : data.items.slice(0, first);
   return (
@@ -157,7 +178,13 @@ export function ReviewsWall({
           from {data.count} verified reviews on Loox
         </span>
       </div>
-      {variant === "list" ? (
+      {variant === "quotes" ? (
+        <div className="mx-auto max-w-5xl columns-1 gap-12 space-y-10 md:columns-2">
+          {shown.map((r) => (
+            <ReviewQuote key={r.name + r.quote.slice(0, 12)} review={r} />
+          ))}
+        </div>
+      ) : variant === "list" ? (
         <div className="mx-auto max-w-4xl border-t border-line">
           {shown.map((r) => (
             <ReviewRow key={r.name + r.quote.slice(0, 12)} review={r} />

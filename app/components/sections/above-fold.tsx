@@ -162,10 +162,15 @@ export function BenefitTitle({
   eyebrow,
   title,
   subtitle,
+  byline,
+  size = "default",
 }: {
   eyebrow?: string;
   title: PdpContent["title"];
   subtitle: string;
+  byline?: string;
+  /** "large" for the full-width headline hero. */
+  size?: "default" | "large";
 }) {
   return (
     <div>
@@ -174,13 +179,14 @@ export function BenefitTitle({
           {eyebrow}
         </p>
       )}
-      <h1 className="display text-[1.65rem] md:text-[2.4rem]">
+      <h1 className={`display ${size === "large" ? "text-[2.1rem] md:text-[3.6rem]" : "text-[1.65rem] md:text-[2.4rem]"}`}>
         <span className="block text-[0.5em] tracking-wide text-muted">
           {title.product}
         </span>
         {title.benefit}
       </h1>
-      <p className="mt-3 text-base text-muted md:text-lg">{subtitle}</p>
+      <p className={`mt-3 text-muted ${size === "large" ? "text-lg md:text-xl" : "text-base md:text-lg"}`}>{subtitle}</p>
+      {byline && <p className="eyebrow mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-muted">{byline}</p>}
     </div>
   );
 }

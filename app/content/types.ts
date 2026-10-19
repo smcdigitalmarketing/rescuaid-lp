@@ -96,6 +96,8 @@ export type PdpContent = {
   gallery: Slide[];
   proofLine: string;
   eyebrow?: string;
+  /** Optional editorial byline under the subtitle (e.g. "By the RescUAid team · 4 min read"). */
+  byline?: string;
   /** Product name plus the benefit, stacked into one title. */
   title: { product: string; benefit: string };
   subtitle: string;
@@ -160,10 +162,17 @@ export type ThemeName =
   | "pulse"
   | "soft"
   | "field"
-  | "pop";
+  | "pop"
+  | "heritage"
+  | "retro"
+  | "story"
+  | "luxe";
 
 /** A text wordmark for a brand direction, in place of the store logo. */
-export type Wordmark = { text: string; mark: "plus" | "heart" | "shield" | "spark" };
+export type Wordmark = {
+  text: string;
+  mark: "plus" | "heart" | "shield" | "spark" | "cross" | "sun" | "gem";
+};
 
 export type ConceptPage = {
   slug: string;
@@ -190,14 +199,14 @@ export type ConceptPage = {
     wordmark?: Wordmark;
     /** Logo left with nav beside it (default), or logo centred with nav below. */
     header?: "standard" | "centered";
-    /** Gallery left (default) or right of the product info on desktop. */
-    hero?: "split" | "reverse";
+    /** Gallery left (default) or right of the product info; "headline" puts the title full-width above both. */
+    hero?: "split" | "reverse" | "headline";
     /** Bundle picker: stacked cards (default), side-by-side columns, or pills plus one detail card. */
     tiers?: "stack" | "grid" | "pills";
     /** Review wall: masonry cards (default), compact rows, sticky notes, or a photo wall. */
-    reviews?: "masonry" | "list" | "notes" | "ugc";
+    reviews?: "masonry" | "list" | "notes" | "ugc" | "quotes";
     /** Decorative band between major sections. */
-    divider?: "none" | "wave" | "stripe";
+    divider?: "none" | "wave" | "stripe" | "rule" | "ornament";
     /** Live countdown in the announcement bar (the store has one). Default true. */
     countdownBar?: boolean;
   };

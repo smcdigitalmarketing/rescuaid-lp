@@ -1,0 +1,15 @@
+{
+  "id": "heroLuxe",
+  "model": "gemini-3-pro-image",
+  "aspect": "1:1",
+  "refs": [
+    "device"
+  ],
+  "prompt": "Luxury gifting product photograph: the RescUAid anti-choking device from the first reference image (a matte red anodized-aluminium handheld cylinder with knurled grip panels, a white square label with a red arrow that always points away from the mask toward the capped handle end, and a clear soft silicone face mask attached to one end), nestled in an open matte-black gift box lined with black tissue, a champagne-gold satin ribbon draped beside it, on a dark charcoal surface, dramatic soft spotlight from above, elegant and quiet. Compose for a square frame with the product in the lower part of the frame and the top half left as calm, empty background with no objects, so a headline can sit there. Use the reference image only to match the device's exact shape, colour, label and mask. Do not copy its background, angle or composition. Show exactly one device unless the prompt asks for more. No leaflets, cards, packaging, pouches or printed paper. No text, captions, logos, badges, seals, certification marks or watermarks anywhere in the image. Photorealistic commercial photography, natural skin tones, anatomically correct hands.",
+  "usage": {
+    "input": 493,
+    "output": 1310
+  },
+  "costUsd": 0.158186,
+  "generatedAt": "2026-10-19T23:40:35.246Z"
+}

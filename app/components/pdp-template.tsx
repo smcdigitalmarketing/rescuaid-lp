@@ -58,6 +58,8 @@ function PdpBody({ page }: { page: ConceptPage }) {
   const c = page.content;
   const compact = page.layout.compact ?? false;
   const reverse = page.layout.hero === "reverse";
+  // Headline hero: the title runs full width above the gallery and the buy column.
+  const headlineHero = page.layout.hero === "headline";
   const divider = page.layout.divider;
   const buy = useBuyState(c.buy, page.slug, PRODUCT_NAME);
   const atcRef = useRef<HTMLButtonElement>(null);
@@ -68,18 +70,26 @@ function PdpBody({ page }: { page: ConceptPage }) {
     <>
       {/* 1–4: product section */}
       <section id="buy" className="scroll-mt-16 px-4 pb-10 pt-4 md:pt-10">
+        {headlineHero && (
+          <header className="mx-auto mb-8 max-w-4xl space-y-4 text-center md:mb-12">
+            <div className="flex justify-center">
+              <ProofLine text={c.proofLine} />
+            </div>
+            <BenefitTitle eyebrow={c.eyebrow} title={c.title} subtitle={c.subtitle} byline={c.byline} size="large" />
+          </header>
+        )}
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] md:gap-12">
           <div className={`min-w-0 md:sticky md:top-24 md:self-start ${reverse ? "md:order-2" : ""}`}>
             <MediaGallery slides={c.gallery} />
           </div>
           <div className="min-w-0 space-y-6">
             <div className="space-y-4">
-              <ProofLine text={c.proofLine} />
-              <BenefitTitle
-                eyebrow={c.eyebrow}
-                title={c.title}
-                subtitle={c.subtitle}
-              />
+              {!headlineHero && (
+                <>
+                  <ProofLine text={c.proofLine} />
+                  <BenefitTitle eyebrow={c.eyebrow} title={c.title} subtitle={c.subtitle} byline={c.byline} />
+                </>
+              )}
               <PriceSavings
                 price={buy.tier.price}
                 compareAt={buy.tier.compareAt}

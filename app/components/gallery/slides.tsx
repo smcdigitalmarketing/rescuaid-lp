@@ -238,7 +238,7 @@ function ReviewScreenshot({
 }) {
   const r = slide.review;
   // Long quotes get a shorter photo and smaller type so the whole quote shows.
-  const long = r.quote.length > 160;
+  const long = r.quote.length > 120;
   const source =
     r.source === "Loox"
       ? `Loox · ${LOOX.count} reviews · ${LOOX.rating} ★`
@@ -248,7 +248,7 @@ function ReviewScreenshot({
   return (
     <div className="flex h-full flex-col items-center justify-center bg-[#eef0f3] p-[6cqw] font-[Inter,system-ui,sans-serif]">
       {slide.headline && (
-        <p className="display mb-[3.5cqw] text-center text-[5.8cqw] text-ink">
+        <p className="display mb-[3.5cqw] text-center text-[5.8cqw] text-[#16151a]">
           {slide.headline}
         </p>
       )}

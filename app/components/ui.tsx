@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Heart, Plus, ShieldCheck, Sparkles, Star } from "lucide-react";
+import { Cross, Gem, Heart, Plus, ShieldCheck, Sparkles, Star, Sun } from "lucide-react";
 import logoUrl from "~/assets/brand/rescuaid-logo.webp";
 import type { ReviewSource, Wordmark } from "~/content/types";
 import type { Img } from "~/lib/images";
@@ -16,7 +16,7 @@ export function Logo({ className = "h-9" }: { className?: string }) {
   );
 }
 
-const MARKS = { plus: Plus, heart: Heart, shield: ShieldCheck, spark: Sparkles };
+const MARKS = { plus: Plus, heart: Heart, shield: ShieldCheck, spark: Sparkles, cross: Cross, sun: Sun, gem: Gem };
 
 /** A brand direction's wordmark, or the store logo when the concept has none. */
 export function BrandMark({ wordmark, className = "h-8 md:h-9" }: { wordmark?: Wordmark; className?: string }) {

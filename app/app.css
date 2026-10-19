@@ -296,6 +296,124 @@
   --r-btn: 14px;
 }
 
+/* Heritage: trusted household essential. Bottle green, parchment, gold, Caslon. */
+[data-theme="heritage"] {
+  --bg: #f6f1e7;
+  --surface: #fffdf8;
+  --surface-2: #ece4d3;
+  --ink: #1f2a24;
+  --muted: #5d6a61;
+  --line: #d9cfbb;
+  --brand: #1f4d3a;
+  --brand-strong: #163a2b;
+  --btn-bg: #1f4d3a;
+  --brand-ink: #f6f1e7;
+  --accent: #1f4d3a;
+  --accent-ink: #f6f1e7;
+  --highlight: #ecdcaa;
+  --highlight-ink: #3d3214;
+  --success: #2f6b4a;
+  --star: #b8892b;
+  --footer-bg: #1f2a24;
+  --footer-ink: #f6f1e7;
+  --f-display: "Libre Caslon Text", Georgia, serif;
+  --f-body: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --f-button: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --display-weight: 700;
+  --display-tracking: -0.005em;
+  --r-card: 6px;
+  --r-btn: 4px;
+}
+
+/* Retro: warm 1970s kitchen. Mustard, burnt orange, avocado, brown. */
+[data-theme="retro"] {
+  --bg: #fbefd9;
+  --surface: #fff8ea;
+  --surface-2: #f4dfb8;
+  --ink: #3a2114;
+  --muted: #7a5640;
+  --line: #e9cfa1;
+  --brand: #e2572b;
+  --brand-strong: #c4451d;
+  --btn-bg: #e2572b;
+  --brand-ink: #fff8ea;
+  --accent: #3a2114;
+  --accent-ink: #fbefd9;
+  --highlight: #f2b134;
+  --highlight-ink: #3a2114;
+  --success: #6f8f2f;
+  --star: #e2572b;
+  --footer-bg: #3a2114;
+  --footer-ink: #fbefd9;
+  --f-display: "Young Serif", Georgia, serif;
+  --f-body: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --f-button: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.01em;
+  --r-card: 18px;
+  --r-btn: 999px;
+}
+
+/* Story: editorial long-read. Newsprint white, black, one red, serif text. */
+[data-theme="story"] {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --surface-2: #f1efe9;
+  --ink: #111111;
+  --muted: #555350;
+  --line: #d9d6cf;
+  --brand: #b3121b;
+  --brand-strong: #8f0e15;
+  --btn-bg: #b3121b;
+  --brand-ink: #ffffff;
+  --accent: #111111;
+  --accent-ink: #ffffff;
+  --highlight: #fff1a8;
+  --highlight-ink: #111111;
+  --success: #1d6b3d;
+  --star: #111111;
+  --footer-bg: #111111;
+  --footer-ink: #fbfaf7;
+  --f-display: "Playfair Display", Georgia, serif;
+  --f-body: "Source Serif 4", Georgia, serif;
+  --f-button: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --f-eyebrow: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --display-weight: 800;
+  --display-tracking: -0.015em;
+  --r-card: 0px;
+  --r-btn: 2px;
+}
+
+/* Luxe: gift-led luxury. Black, champagne gold, high-contrast serif. */
+[data-theme="luxe"] {
+  --bg: #0d0c0a;
+  --surface: #161411;
+  --surface-2: #1f1c18;
+  --ink: #f3eee4;
+  --muted: #b3aa98;
+  --line: #2f2a23;
+  --brand: #c9a96e;
+  --brand-strong: #b08f55;
+  --btn-bg: #c9a96e;
+  --brand-ink: #0d0c0a;
+  --accent: #c9a96e;
+  --accent-ink: #0d0c0a;
+  --highlight: #c9a96e;
+  --highlight-ink: #0d0c0a;
+  --success: #b9d3a0;
+  --star: #c9a96e;
+  --footer-bg: #000000;
+  --footer-ink: #f3eee4;
+  --f-display: "Cormorant Garamond", Georgia, serif;
+  --f-body: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --f-button: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --display-weight: 600;
+  --display-case: none;
+  --display-tracking: 0.005em;
+  --r-card: 0px;
+  --r-btn: 0px;
+}
+
 /* Headline type follows the concept: weight, case and tracking are tokens too. */
 @utility display {
   font-family: var(--f-display);
@@ -348,6 +466,18 @@ body:has(> [data-theme="soft"]) {
 
 body:has(> [data-theme="field"]) {
   background: #0f1110;
+}
+
+body:has(> [data-theme="heritage"]) {
+  background: #f6f1e7;
+}
+
+body:has(> [data-theme="retro"]) {
+  background: #fbefd9;
+}
+
+body:has(> [data-theme="luxe"]) {
+  background: #0d0c0a;
 }
 
 /* Lifestyle strip: two copies of the list scroll left in a loop. */

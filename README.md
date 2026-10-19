@@ -1,6 +1,6 @@
 # rescuaid-lp
 
-Landing page proof of concept for **RescUAid 2.0**. It mocks rescuaid.com with the real products, prices, photos and reviews, and holds nine landing pages: five angles on today's brand and four new brand directions. All nine follow the same seven-section product page template (see [docs/pdp-template-sop.md](docs/pdp-template-sop.md)), and each one tests a different idea.
+Landing page proof of concept for **RescUAid 2.0**. It mocks rescuaid.com with the real products, prices, photos and reviews, and holds thirteen landing pages: five angles on today's brand and eight new brand directions. All thirteen follow the same seven-section product page template (see [docs/pdp-template-sop.md](docs/pdp-template-sop.md)), and each one tests a different idea.
 
 ## SOP
 
@@ -13,7 +13,7 @@ Cart and checkout are mocked. Nothing is charged and nothing is sent to Shopify.
 | URL                                                          | Concept             | Tests                                                   |
 | ------------------------------------------------------------ | ------------------- | ------------------------------------------------------- |
 | `/`                                                          | Review hub          | Links to every page, with its hypothesis                |
-| `/gallery`                                                   | Gallery images      | All 35 gallery images, downloadable as JPGs             |
+| `/gallery`                                                   | Gallery images      | All 91 gallery images, downloadable as JPGs             |
 | `/sop`                                                       | SOP                 | The SOP, rendered from `docs/pdp-template-sop.md`       |
 | `/products/rescuaid-anti-choking-device-for-adults-children` | Baseline            | The framework in the live store's look: structure alone |
 | `/pages/clinical`                                            | Clinical, trust-led | Authority first: how it works and an EMT's word         |
@@ -24,6 +24,10 @@ Cart and checkout are mocked. Nothing is charged and nothing is sent to Shopify.
 | `/pages/soft`                                                | Soft (new brand)    | Friendly family DTC: rounded, pastel, sticky notes      |
 | `/pages/field`                                               | Field (new brand)   | Rugged emergency gear: dark, safety orange, stripes     |
 | `/pages/pop`                                                 | Pop (new brand)     | Social-native: loud colour, photo-wall reviews          |
+| `/pages/heritage`                                            | Heritage (new brand)| Household essential: bottle green, serif, pull quotes   |
+| `/pages/retro`                                               | Retro (new brand)   | Warm 1970s kitchen: mustard, orange, colour blocks      |
+| `/pages/story`                                               | Story (new brand)   | Editorial long-read: headline first, teaches first      |
+| `/pages/luxe`                                                | Luxe (new brand)    | Gift-led luxury: black and champagne gold               |
 
 ## Getting started
 

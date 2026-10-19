@@ -17,6 +17,10 @@ export default {
       "/pages/soft",
       "/pages/field",
       "/pages/pop",
+      "/pages/heritage",
+      "/pages/retro",
+      "/pages/story",
+      "/pages/luxe",
       "/gallery",
       "/sop",
     ];

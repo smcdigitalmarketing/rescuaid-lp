@@ -1,6 +1,6 @@
 # Product Landing Page SOP
 
-Every product landing page we build uses one seven-section structure, so we can launch pages fast and test one idea at a time. It follows Arsh Sanwarwala's framework in [How To Build a Product Page SO Premium They Beg You To Buy](https://www.youtube.com/watch?v=ngXi-No3s2o). The nine RescUAid concept pages at [rescuaid-lp.vercel.app](https://rescuaid-lp.vercel.app/) are built this way.
+Every product landing page we build uses one seven-section structure, so we can launch pages fast and test one idea at a time. It follows Arsh Sanwarwala's framework in [How To Build a Product Page SO Premium They Beg You To Buy](https://www.youtube.com/watch?v=ngXi-No3s2o). The thirteen RescUAid concept pages at [rescuaid-lp.vercel.app](https://rescuaid-lp.vercel.app/) are built this way.
 
 The video defines a premium page as one people want to buy from, and that comes down to trust. Four things build it:
 
@@ -86,13 +86,13 @@ A concept can be an **angle on today's brand** (same logo and look) or a **new b
 
 | Option | Choices |
 |---|---|
-| Logo | The store logo, or a wordmark (text plus a small mark) |
+| Logo | The store logo, or a wordmark (text plus a small mark: cross, plus, heart, shield, spark, sun or gem) |
 | Header | Logo left with nav, or logo centred |
-| Hero | Gallery left or right of the product info |
+| Hero | Gallery left or right of the product info, or headline-first (the title runs full width above both) |
 | Bundle picker | Stacked cards, side-by-side columns, or pills with one detail card |
-| Reviews | Masonry cards, compact rows, sticky notes, or a photo wall |
+| Reviews | Masonry cards, compact rows, sticky notes, a photo wall, or large pull quotes |
 | Value props | Alternating rows, cards, bento grid, or numbered list |
-| Dividers | None, soft wave, or hazard stripe |
+| Dividers | None, soft wave, hazard stripe, double rule, or centred ornament |
 
 In the code: copy a file in `app/content/pages/` and set its `slug`, `name`, `path`, `hypothesis`, `traffic` and `cover` (and `group: "brand"` for a brand direction). Layout options live in its `layout` block. For a new look, add a `[data-theme="<name>"]` block to `app/app.css`, the name to `ThemeName` in `app/content/types.ts`, and the Google Fonts query to the page's `fonts`. Register the page in `app/content/pages/index.ts` and add its URL to `prerender()` in `react-router.config.ts`. A push to `main` deploys it.
 

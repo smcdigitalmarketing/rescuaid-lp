@@ -27,6 +27,10 @@ const CONCEPTS = [
   "/pages/soft",
   "/pages/field",
   "/pages/pop",
+  "/pages/heritage",
+  "/pages/retro",
+  "/pages/story",
+  "/pages/luxe",
 ];
 const PAGES = ["/", "/gallery", "/sop", ...CONCEPTS];
 const GALLERY_SLIDES = 7;
