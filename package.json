@@ -10,7 +10,9 @@
     "store:port": "node scripts/port-store.ts",
     "images": "node --env-file-if-exists=.env scripts/generate-images.ts",
     "gallery:export": "node scripts/export-gallery.ts",
-    "check": "node scripts/check-site.ts"
+    "check": "node scripts/check-site.ts",
+    "videos": "node --env-file-if-exists=.env scripts/generate-videos.ts",
+    "videos:build": "node scripts/build-videos.ts"
   },
   "dependencies": {
     "@react-router/node": "^7.18.4",

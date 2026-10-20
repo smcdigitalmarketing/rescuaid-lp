@@ -1,7 +1,7 @@
 import { lifeImg } from "~/lib/images";
 import { LOOX, loox } from "../base";
 import type { ConceptPage } from "../types";
-import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide, demoVideoSlide } from "./shared";
 
 const karen = loox.find((r) => r.name === "Karen K.")!;
 const nancy = loox.find((r) => r.name === "Nancy R.")!;
@@ -76,6 +76,7 @@ export const luxe: ConceptPage = {
       stepsSlide("Place. Press. Pull."),
       compareSlide("Considered design"),
       reviewSlide(karen, "“They came in nice packaging and were made well”"),
+      demoVideoSlide(),
     ],
     valueProps: {
       eyebrow: "Why it makes the gift",

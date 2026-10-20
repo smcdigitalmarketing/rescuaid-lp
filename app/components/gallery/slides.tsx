@@ -1,4 +1,4 @@
-import { BadgeCheck, Check, X } from "lucide-react";
+import { BadgeCheck, Check, Play, X } from "lucide-react";
 import type { Slide } from "~/content/types";
 import { LOOX } from "~/content/base";
 import { Picture, Stars } from "~/components/ui";
@@ -13,9 +13,12 @@ import { Picture, Stars } from "~/components/ui";
 export function SlideView({
   slide,
   priority = false,
+  still = false,
 }: {
   slide: Slide;
   priority?: boolean;
+  /** Show a video slide as its poster frame (for grids of many tiles). */
+  still?: boolean;
 }) {
   switch (slide.kind) {
     case "headline":
@@ -227,6 +230,37 @@ export function SlideView({
 
     case "review":
       return <ReviewScreenshot slide={slide} />;
+
+    case "video":
+      return (
+        <div className="relative h-full overflow-hidden bg-black">
+          {still ? (
+            <img src={slide.poster} alt={slide.alt} className="h-full w-full object-cover" loading="lazy" />
+          ) : (
+            <video
+              src={slide.src}
+              poster={slide.poster}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={slide.alt}
+              className="h-full w-full object-cover"
+            />
+          )}
+          <span className="absolute left-[4cqw] top-[4cqw] inline-flex items-center gap-[1cqw] rounded-full bg-black/60 px-[2.6cqw] py-[1.1cqw] text-[3cqw] font-bold uppercase tracking-wide text-white">
+            <Play aria-hidden="true" className="size-[3cqw]" fill="currentColor" />
+            Demo
+          </span>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-[6cqw] pt-[16cqw] text-white">
+            {slide.eyebrow && (
+              <p className="eyebrow mb-[1.5cqw] text-[3.2cqw] font-bold uppercase tracking-[0.14em] opacity-90">{slide.eyebrow}</p>
+            )}
+            <p className="display text-[7.2cqw]">{slide.headline}</p>
+          </div>
+        </div>
+      );
   }
 }
 
@@ -314,6 +348,15 @@ export function SlideThumb({ slide }: { slide: Slide }) {
       return <Picture image={slide.steps[0].image} />;
     case "compare":
       return <Picture image={slide.us.image} fit="contain" />;
+    case "video":
+      return (
+        <span className="relative block h-full">
+          <img src={slide.poster} alt="" className="h-full w-full object-cover" />
+          <span className="absolute inset-0 grid place-items-center bg-black/30 text-white">
+            <Play aria-hidden="true" className="size-4" fill="currentColor" />
+          </span>
+        </span>
+      );
     case "review":
       return slide.review.photo ? (
         <Picture image={slide.review.photo} />
@@ -334,6 +377,7 @@ export const SLIDE_LABELS: Record<Slide["kind"], string> = {
   steps: "How it works",
   compare: "Us vs them",
   review: "Review",
+  video: "Demo video",
 };
 
 /** Where `npm run gallery:export` writes each slide (public/ is served as-is). */

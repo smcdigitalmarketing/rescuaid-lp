@@ -8,4 +8,5 @@ export default [
   route("gallery", "routes/gallery.tsx"),
   route("sop", "routes/sop.tsx"),
   route("gallery/render/:slug/:n", "routes/gallery.render.$slug.$n.tsx"),
+  route("video/render/:layer", "routes/video.render.$layer.tsx"),
 ] satisfies RouteConfig;

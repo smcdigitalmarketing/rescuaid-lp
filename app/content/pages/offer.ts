@@ -1,7 +1,7 @@
 import { lifeImg, pageImg } from "~/lib/images";
 import { GUARANTEE_DAYS, LOOX, loox } from "../base";
 import type { ConceptPage } from "../types";
-import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide, demoVideoSlide } from "./shared";
 
 const carol = loox.find((r) => r.name === "Carol M.")!;
 const sarahW = loox.find((r) => r.name === "Sarah W.")!;
@@ -80,6 +80,7 @@ export const offer: ConceptPage = {
       stepsSlide(),
       compareSlide(),
       reviewSlide(carol, "Families buy more than one"),
+      demoVideoSlide(),
     ],
     valueProps: {
       headline: "Why families order three",

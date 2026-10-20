@@ -480,6 +480,11 @@ body:has(> [data-theme="luxe"]) {
   background: #0d0c0a;
 }
 
+/* Video overlay renders: transparent so captions keep their alpha. */
+body:has([data-video-render]) {
+  background: transparent;
+}
+
 /* Lifestyle strip: two copies of the list scroll left in a loop. */
 @keyframes marquee {
   from {

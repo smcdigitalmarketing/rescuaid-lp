@@ -84,6 +84,16 @@ export function compareSlide(headline = "Built for the moment panic sets in"): S
 /** 7 · A real review, shown like a screenshot of the review widget. */
 export const reviewSlide = (review: Review, headline?: string): Slide => ({ kind: "review", headline, review });
 
+/** 8 · Extra: the Veo demo loop (npm run videos:build writes public/video/demo.*). */
+export const DEMO_VIDEO = { src: "/video/demo.mp4", poster: "/video/demo.jpg" };
+export const demoVideoSlide = (headline = "Place. Press. Pull."): Slide => ({
+  kind: "video",
+  ...DEMO_VIDEO,
+  alt: "Demonstration: a hand presses the RescUAid handle, then pulls it back, with the mask sealed over a calm adult's mouth and nose",
+  eyebrow: "See it in action",
+  headline,
+});
+
 /** The EMT quote, trimmed for the space under the button. */
 export const expertShort: Review = {
   ...expert,

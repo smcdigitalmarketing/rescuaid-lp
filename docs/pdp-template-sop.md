@@ -48,6 +48,8 @@ Image rules:
 - **Before and after shows preparation, not an emergency.** Nobody is shown choking, and no medical outcome is claimed.
 - **Reviews are real.** Use the customer's exact words, name and photo, with the source shown.
 
+After the seven images, a short silent **demo video** loops as the last gallery item: the product in use, no words burned in. A video never replaces one of the seven images; Shopify galleries take both.
+
 How the images are made, in this repo:
 
 - The photography is generated with Gemini from `app/data/image-slots.ts` (`npm run images`, about $0.16 an image). Every image keeps its prompt in a `.json` file next to it, so it can be regenerated. The product always matches the reference photo in `assets/reference/device.jpg`.

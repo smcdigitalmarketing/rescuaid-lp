@@ -1,7 +1,7 @@
 import { lifeImg, pageImg } from "~/lib/images";
 import { LOOX, expert, loox } from "../base";
 import type { ConceptPage } from "../types";
-import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide, demoVideoSlide } from "./shared";
 
 const tom = loox.find((r) => r.name === "Tom R.")!;
 
@@ -81,6 +81,7 @@ export const clinical: ConceptPage = {
       stepsSlide("Place. Press. Pull."),
       compareSlide("How RescUAid compares"),
       reviewSlide(expert, "An EMT's verdict"),
+      demoVideoSlide(),
     ],
     valueProps: {
       eyebrow: "How it's designed",

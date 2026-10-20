@@ -23,6 +23,11 @@ export const meta: Route.MetaFunction = () => [
   })),
 ];
 
+const VIDEOS = [
+  { title: "Demo loop", detail: "8 s, square, silent", src: "/video/demo.mp4", poster: "/video/demo.jpg", aspect: "aspect-square", muted: true },
+  { title: "Pop social ad", detail: "10.5 s, 9:16, room tone", src: "/video/ad-pop.mp4", poster: "/video/ad-pop.jpg", aspect: "aspect-[9/16] max-h-[560px] object-contain", muted: false },
+];
+
 export default function Gallery() {
   /** The slide open in the lightbox: which concept, which image. */
   const [zoom, setZoom] = useState<{ slug: string; index: number } | null>(null);
@@ -43,8 +48,40 @@ export default function Gallery() {
           Seven images per concept, in this order: benefit headline, in use,
           before and after, what's inside, how it works, us vs them, and a real
           review. Each downloads as a 1600 × 1600 JPG, ready to upload to
-          Shopify.
+          Shopify. Every gallery ends with the demo video.
         </p>
+
+        <section className="mt-10">
+          <h2 className="text-xl font-bold">Videos</h2>
+          <p className="mt-1 text-sm text-black/60">
+            Generated with Veo 3.1. The demo loops silently in every product gallery; the ad is a 9:16 cut for TikTok
+            and Reels in the Pop look.
+          </p>
+          <ul className="mt-4 grid gap-6 sm:grid-cols-2 lg:max-w-3xl">
+            {VIDEOS.map((v) => (
+              <li key={v.src}>
+                <video
+                  src={v.src}
+                  poster={v.poster}
+                  controls
+                  muted={v.muted}
+                  playsInline
+                  preload="metadata"
+                  className={`w-full rounded-lg border border-black/10 bg-black ${v.aspect}`}
+                />
+                <div className="mt-2 flex items-center justify-between gap-2 text-sm">
+                  <span>
+                    <strong>{v.title}</strong> <span className="text-black/60">· {v.detail}</span>
+                  </span>
+                  <a href={v.src} download className="inline-flex items-center gap-1 text-xs font-semibold text-[#c62828] hover:underline">
+                    <Download aria-hidden="true" className="size-3.5" />
+                    MP4
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         {pages.map((p) => (
           <section key={p.slug} className="mt-12">
@@ -59,12 +96,12 @@ export default function Gallery() {
             </div>
             <ol
               data-theme={p.theme}
-              className="mt-4 grid grid-cols-2 gap-3 font-sans sm:grid-cols-4 lg:grid-cols-7"
+              className="mt-4 grid grid-cols-2 gap-3 font-sans sm:grid-cols-4 lg:grid-cols-8"
             >
               {p.content.gallery.map((s, i) => (
                 <li key={i} className="flex flex-col">
                   <div className="relative aspect-square overflow-hidden rounded-lg border border-black/10 [container-type:inline-size]">
-                    <SlideView slide={s} />
+                    <SlideView slide={s} still />
                     <button
                       type="button"
                       onClick={() => setZoom({ slug: p.slug, index: i })}
@@ -77,13 +114,13 @@ export default function Gallery() {
                       {i + 1}. {SLIDE_LABELS[s.kind]}
                     </span>
                     <a
-                      href={exportPath(p.slug, i + 1, s.kind)}
+                      href={s.kind === "video" ? s.src : exportPath(p.slug, i + 1, s.kind)}
                       download
                       className="inline-flex items-center gap-1 font-semibold text-[#c62828] hover:underline"
-                      aria-label={`Download ${p.name} image ${i + 1}, ${SLIDE_LABELS[s.kind]}`}
+                      aria-label={`Download ${p.name} ${s.kind === "video" ? "demo video" : `image ${i + 1}`}, ${SLIDE_LABELS[s.kind]}`}
                     >
                       <Download aria-hidden="true" className="size-3.5" />
-                      JPG
+                      {s.kind === "video" ? "MP4" : "JPG"}
                     </a>
                   </div>
                 </li>

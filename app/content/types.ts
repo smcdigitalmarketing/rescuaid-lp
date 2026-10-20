@@ -32,7 +32,9 @@ export type Slide =
       rows: { label: string; us: string; them: string }[];
     }
   /** 7 · A review screenshot with a real quote. */
-  | { kind: "review"; headline?: string; review: Review };
+  | { kind: "review"; headline?: string; review: Review }
+  /** 8 · Extra, after the seven images: a silent looping demo video. */
+  | { kind: "video"; src: string; poster: string; alt: string; eyebrow?: string; headline: string };
 
 export type SlideKind = Slide["kind"];
 

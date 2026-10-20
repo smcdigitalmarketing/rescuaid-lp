@@ -171,6 +171,22 @@ export const imageSlots = {
     refs: ["device"],
   },
 
+  // First frames for the Veo videos (9:16, no children: Veo won't animate them).
+  vidDemo: {
+    id: "vidDemo",
+    alt: "Close-up: the RescUAid mask sealed over a calm adult's mouth and nose, a hand on the handle",
+    prompt: `Vertical close-up, calm first-aid training demonstration: the clear mask of ${DEVICE} is gently sealed over the mouth and nose of a relaxed adult woman in her thirties, eyes open, seated; an instructor's hand holds the red handle, which points straight out from her face toward the camera's right. The mask, the device and her face fill the centre of the frame, with soft, bright, out-of-focus room behind. Soft daylight. ${IN_USE} ${RULES}`,
+    aspect: "9:16",
+    refs: ["device", "in-use-closeup"],
+  },
+  vidAd: {
+    id: "vidAd",
+    alt: "A parent's hand setting RescUAid down beside an empty high chair in a bright kitchen",
+    prompt: `Vertical lifestyle photograph in a bright, modern kitchen with playful colour accents (a violet fruit bowl, a pink tea towel): an adult's hand is about to set ${DEVICE} down on the white counter in the foreground, beside an empty white high chair whose tray holds a toddler's sippy cup and a small bowl of fruit pieces. Sunny morning light, cheerful and calm. No people visible except the hand, and no children. ${RULES}`,
+    aspect: "9:16",
+    refs: ["device"],
+  },
+
   // ── 2 · Product in use ───────────────────────────────────────────────────
   inUseKitchen: {
     id: "inUseKitchen",

@@ -3,6 +3,7 @@ import { LOOX, loox } from "../base";
 import type { ConceptPage } from "../types";
 import {
   compareSlide,
+  demoVideoSlide,
   insideSlide,
   pairs,
   reviewSlide,
@@ -106,6 +107,7 @@ export const pop: ConceptPage = {
       stepsSlide("Place. Press. Pull."),
       compareSlide("Not all devices are equal"),
       reviewSlide(carol, "Parents are stocking up"),
+      demoVideoSlide(),
     ],
     valueProps: {
       eyebrow: "Small enough for everywhere",

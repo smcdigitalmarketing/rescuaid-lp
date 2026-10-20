@@ -33,7 +33,8 @@ const CONCEPTS = [
   "/pages/luxe",
 ];
 const PAGES = ["/", "/gallery", "/sop", ...CONCEPTS];
-const GALLERY_SLIDES = 7;
+const GALLERY_SLIDES = 8; // Russab's 7 images + the demo video
+const GALLERY_JPGS = 7;
 
 const problems: string[] = [];
 let passed = 0;
@@ -328,6 +329,10 @@ async function audit(viewport: { width: number; height: number }) {
     await page.goto(base + p, { waitUntil: "networkidle" });
     const links = await checkLinks(page, p, tag, external);
     if (p === "/gallery") {
+      for (const v of ["/video/demo.mp4", "/video/ad-pop.mp4"]) {
+        const res = await page.request.get(base + v);
+        ok(res.status() === 200 && (res.headers()["content-type"] ?? "").includes("video/mp4"), `${tag} ${v} → ${res.status()}`);
+      }
       await page.getByRole("button", { name: /^Enlarge .* image 1$/ }).first().click();
       const box = page.getByRole("dialog", { name: /^Image 1 of \d+$/ });
       ok(await box.isVisible(), `${tag} /gallery image opens the lightbox`);
@@ -335,8 +340,8 @@ async function audit(viewport: { width: number; height: number }) {
       ok(!(await box.isVisible()), `${tag} /gallery lightbox closes`);
       const downloads = links.filter((l) => l.href.endsWith(".jpg")).length;
       ok(
-        downloads === CONCEPTS.length * GALLERY_SLIDES,
-        `${tag} /gallery has ${CONCEPTS.length * GALLERY_SLIDES} downloads (${downloads})`,
+        downloads === CONCEPTS.length * GALLERY_JPGS,
+        `${tag} /gallery has ${CONCEPTS.length * GALLERY_JPGS} JPG downloads (${downloads})`,
       );
     }
     if (!CONCEPTS.includes(p)) continue;

@@ -1,7 +1,7 @@
 import { lifeImg } from "~/lib/images";
 import { loox } from "../base";
 import type { ConceptPage } from "../types";
-import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide, demoVideoSlide } from "./shared";
 
 const nancy = loox.find((r) => r.name === "Nancy R.")!;
 const georgiana = loox.find((r) => r.name === "Georgiana F.")!;
@@ -73,6 +73,7 @@ export const heritage: ConceptPage = {
       stepsSlide("Three simple steps"),
       compareSlide("Why households choose RescUAid"),
       reviewSlide(nancy, "“I add these to my gifts to family and friends”"),
+      demoVideoSlide(),
     ],
     valueProps: {
       eyebrow: "Made to last",

@@ -1,0 +1,16 @@
+{
+  "id": "vidDemo",
+  "model": "gemini-3-pro-image",
+  "aspect": "9:16",
+  "refs": [
+    "device",
+    "in-use-closeup"
+  ],
+  "prompt": "Vertical close-up, calm first-aid training demonstration: the clear mask of the RescUAid anti-choking device from the first reference image (a matte red anodized-aluminium handheld cylinder with knurled grip panels, a white square label with a red arrow that always points away from the mask toward the capped handle end, and a clear soft silicone face mask attached to one end) is gently sealed over the mouth and nose of a relaxed adult woman in her thirties, eyes open, seated; an instructor's hand holds the red handle, which points straight out from her face toward the camera's right. The mask, the device and her face fill the centre of the frame, with soft, bright, out-of-focus room behind. Soft daylight. The second reference image shows how the device is held against the face; do not copy the people, setting or framing in it. Nobody is choking, coughing or distressed: this is a calm demonstration. Use the reference image only to match the device's exact shape, colour, label and mask. Do not copy its background, angle or composition. Show exactly one device unless the prompt asks for more. No leaflets, cards, packaging, pouches or printed paper. No text, captions, logos, badges, seals, certification marks or watermarks anywhere in the image. Photorealistic commercial photography, natural skin tones, anatomically correct hands.",
+  "usage": {
+    "input": 803,
+    "output": 1334
+  },
+  "costUsd": 0.161686,
+  "generatedAt": "2026-10-20T00:17:06.713Z"
+}

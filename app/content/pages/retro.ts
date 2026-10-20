@@ -1,7 +1,7 @@
 import { lifeImg } from "~/lib/images";
 import { loox } from "../base";
 import type { ConceptPage } from "../types";
-import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide, demoVideoSlide } from "./shared";
 
 const sarahW = loox.find((r) => r.name === "Sarah W.")!;
 
@@ -71,6 +71,7 @@ export const retro: ConceptPage = {
       stepsSlide("Place. Press. Pull."),
       compareSlide("The family-friendly choice"),
       reviewSlide(sarahW, "One in every room"),
+      demoVideoSlide(),
     ],
     valueProps: {
       eyebrow: "Where it lives",

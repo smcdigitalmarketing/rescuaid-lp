@@ -1,7 +1,7 @@
 import { lifeImg } from "~/lib/images";
 import { LOOX, expert } from "../base";
 import type { ConceptPage } from "../types";
-import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide, demoVideoSlide } from "./shared";
 
 /**
  * Story: a new brand direction. An editorial long-read that teaches first and
@@ -72,6 +72,7 @@ export const story: ConceptPage = {
       stepsSlide("Place. Press. Pull."),
       compareSlide("How RescUAid compares"),
       reviewSlide(expert, "An EMT's view"),
+      demoVideoSlide(),
     ],
     valueProps: {
       eyebrow: "What to do",

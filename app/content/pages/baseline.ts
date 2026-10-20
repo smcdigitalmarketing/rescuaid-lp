@@ -2,7 +2,7 @@ import { MAIN_HANDLE } from "~/data/catalog";
 import { lifeImg, pageImg } from "~/lib/images";
 import { loox, media } from "../base";
 import type { ConceptPage } from "../types";
-import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide, demoVideoSlide } from "./shared";
 
 /**
  * Baseline: the video's structure in the live rescuaid.com look, so the only
@@ -82,6 +82,7 @@ export const baseline: ConceptPage = {
       stepsSlide(),
       compareSlide(),
       reviewSlide(loox[0], "4.8/5 from 389 verified reviews"),
+      demoVideoSlide(),
     ],
     valueProps: {
       eyebrow: "Why RescUAid",

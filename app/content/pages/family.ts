@@ -1,7 +1,7 @@
 import { lifeImg } from "~/lib/images";
 import { LOOX, loox, stories, tiers } from "../base";
 import type { ConceptPage } from "../types";
-import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide } from "./shared";
+import { compareSlide, insideSlide, pairs, reviewSlide, shared, stepsSlide, demoVideoSlide } from "./shared";
 
 const carol = loox.find((r) => r.name === "Carol M.")!;
 const sarahW = loox.find((r) => r.name === "Sarah W.")!;
@@ -91,6 +91,7 @@ export const family: ConceptPage = {
       stepsSlide(),
       compareSlide("Made for real family life"),
       reviewSlide(loox[0], "Made for kids and grandparents"),
+      demoVideoSlide(),
     ],
     valueProps: {
       eyebrow: "Where families keep theirs",

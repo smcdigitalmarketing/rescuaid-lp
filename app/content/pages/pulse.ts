@@ -3,6 +3,7 @@ import { LOOX, loox } from "../base";
 import type { ConceptPage } from "../types";
 import {
   compareSlide,
+  demoVideoSlide,
   insideSlide,
   pairs,
   reviewSlide,
@@ -104,6 +105,7 @@ export const pulse: ConceptPage = {
       stepsSlide("01 Place · 02 Press · 03 Pull"),
       compareSlide("RescUAid vs other devices"),
       reviewSlide(tom, "Verified review"),
+      demoVideoSlide(),
     ],
     valueProps: {
       eyebrow: "Specification",

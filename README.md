@@ -54,6 +54,15 @@ Every page's gallery has seven images in Russab's order: benefit headline, in us
 - `npm run images` generates the photography with Gemini from `app/data/image-slots.ts`. It needs `GEMINI_API_KEY` in `.env` (see `.env.example`). Use `-- --dry-run` to see the cost first, `-- --only <id>` for one image, and `-- --force` to regenerate.
 - `npm run gallery:export -- --base http://localhost:5173` (with `npm run dev` running) saves every slide as a 1600 × 1600 JPG in `public/gallery/`. They are listed for download at `/gallery`.
 
+## Videos
+
+Two videos made with Veo 3.1 from generated first frames (`app/data/videos.ts`):
+
+- **Demo loop** (`public/video/demo.mp4`): square, silent, 8 s. It is the 8th item in every product gallery, after the seven images.
+- **Pop social ad** (`public/video/ad-pop.mp4`): 9:16, about 10.5 s, with HTML captions and an end card (`app/routes/video.render.$layer.tsx`).
+
+`npm run videos` generates the raw clips into `assets/video/` (git-ignored, about $3.20 a clip). With `npm run dev` running, `npm run videos:build -- --base http://localhost:5173` turns them into the web files (needs ffmpeg). Both are on `/gallery` with download links.
+
 ## Checking the site
 
 `npm run check -- --base <url>` clicks through every page at desktop and phone widths, covering links, gallery, bundles, cart, checkout preview, menus and downloads. It exits non-zero if anything fails.
